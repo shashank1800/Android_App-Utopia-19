@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UTOPIA</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="notification_Server_Key">AAAAI-kFF7k:APA91bFkUnmmO9X6e1HT4F7nsVAIhNv-AcAIRg6v09qfvgIOJFhtWM10rRnfbCUmeTIFpyc_LKGmj2jU_vY4oeYiYzMVaZMKQvhbvWyqOMj96PkiLJIV041LgEH9BQ2eekjLwWl0mlhk</string>
+</resources>
