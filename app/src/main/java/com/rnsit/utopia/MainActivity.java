@@ -1,19 +1,21 @@
 package com.rnsit.utopia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,12 +32,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private Context context;
 
+    private NavigationView navigationView;
+
     private RecyclerView mRecyclerViewPost;
     private PostViewAdapter mPostViewAdapter;
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<PostViewObject> PostViewObject;
 
     private DatabaseReference mDatabaseRef;
+    private static final int TOTAL_ITEM_EACH_LOAD = 3;
+    private String s = "20190215165024";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,44 +57,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        PostViewObject = new ArrayList<PostViewObject>();
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View headerView = navigationView.getHeaderView(0);
-
         mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
         mRecyclerViewPost.setHasFixedSize(true);
-
-        linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, true);
-
+        linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
         mRecyclerViewPost.setLayoutManager(linearLayoutManager);
-
-
-        PostViewObject = new ArrayList<PostViewObject>();
         mPostViewAdapter = new PostViewAdapter(this,PostViewObject);
+        mRecyclerViewPost.setAdapter(mPostViewAdapter);
 
+        loadData();
+
+        mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
+
+            @Override
+            public void onLoadMore() {
+                loadData();
+            }
+
+        });
+    }
+
+    private void loadData() {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         Query myTopPostsQuery = mDatabaseRef.child("Posts");
-        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                PostViewObject.clear();
-                for(DataSnapshot posts:dataSnapshot.getChildren()) {
-                    PostViewObject mPostView = posts.getValue(PostViewObject.class);
-                    PostViewObject.add(mPostView);
-                }
-                mPostViewAdapter.notifyDataSetChanged();
-            }
+        myTopPostsQuery
+                .orderByKey()
+                .startAt(s)
+                .limitToFirst(TOTAL_ITEM_EACH_LOAD)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-        mRecyclerViewPost.setAdapter(mPostViewAdapter);
+                        for(DataSnapshot posts:dataSnapshot.getChildren()) {
+                            PostViewObject mPostView = posts.getValue(PostViewObject.class);
+                            if(s.equals(mPostView.getTimeStamp())){continue;}
+                            PostViewObject.add(mPostView);
+                            s = String.valueOf(mPostView.getTimeStamp());
+                        }
+                        mPostViewAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
     }
 
     @Override
