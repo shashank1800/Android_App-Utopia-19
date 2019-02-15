@@ -1,6 +1,5 @@
 package com.rnsit.utopia;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,12 +8,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -40,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<PostViewObject> PostViewObject;
 
     private DatabaseReference mDatabaseRef;
-    private static final int TOTAL_ITEM_EACH_LOAD = 3;
-    private String s = "20190215165024";
+    private static final int TOTAL_ITEM_EACH_LOAD = 4;
+    private String s = "-0216002640";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         Query myTopPostsQuery = mDatabaseRef.child("Posts");
         myTopPostsQuery
-                .orderByKey()
+                .orderByChild("timeStamp")
                 .startAt(s)
                 .limitToFirst(TOTAL_ITEM_EACH_LOAD)
                 .addValueEventListener(new ValueEventListener() {
