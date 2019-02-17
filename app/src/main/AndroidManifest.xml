@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -14,51 +15,55 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SplashScreen">
-        </activity>
-
-        <activity android:name=".MainActivity"
+        <activity android:name=".AboutDev"></activity>
+        <activity android:name=".SplashScreen"></activity>
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Teams"
-            android:parentActivityName="com.rnsit.utopia.Teams">
+        <activity
+            android:name=".Teams"
+            android:parentActivityName=".Teams">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-        <activity android:name=".Results"
-            android:parentActivityName="com.rnsit.utopia.Results">
+        <activity
+            android:name=".Results"
+            android:parentActivityName=".Results">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-        <activity android:name=".Events"
-            android:parentActivityName="com.rnsit.utopia.Events">
+        <activity
+            android:name=".Events"
+            android:parentActivityName=".Events">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-
-        <activity android:name=".feedback"
-            android:parentActivityName="com.rnsit.utopia.feedback">
+        <activity
+            android:name=".feedback"
+            android:parentActivityName=".feedback">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-
-        <activity android:name=".Contact"
-            android:parentActivityName="com.rnsit.utopia.Contact">
+        <activity
+            android:name=".Contact"
+            android:parentActivityName=".Contact">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-
-        <activity android:name=".AboutApp"
-            android:parentActivityName="com.rnsit.utopia.AboutApp">
+        <activity
+            android:name=".AboutApp"
+            android:parentActivityName=".AboutApp">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />

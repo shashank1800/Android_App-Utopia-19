@@ -4,19 +4,20 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class PostViewObject implements Serializable{
-    String postDetail,imagePostURL,timeStamp;
-    public PostViewObject (String timeStamp,String postDetail,String imagePostURL){
+    String postDetail,imagePostURL;
+    long timeStamp;
+    public PostViewObject (long timeStamp,String postDetail,String imagePostURL){
         this.timeStamp = timeStamp;
         this.postDetail = postDetail;
         this.imagePostURL = imagePostURL;
     }
     public PostViewObject(){}
 
-    public String getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(long timeStamp) {
         this.timeStamp = timeStamp;
     }
 

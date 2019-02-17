@@ -1,5 +1,6 @@
 package com.rnsit.utopia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,13 +14,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -35,10 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PostViewAdapter mPostViewAdapter;
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<PostViewObject> PostViewObject;
-
-    private DatabaseReference mDatabaseRef;
-    private static final int TOTAL_ITEM_EACH_LOAD = 4;
-    private String s = "-0216002640";
+    private FirebaseFirestore db;
+    private Query query;
+    private static final int TOTAL_ITEM_EACH_LOAD = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,27 +82,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void loadData() {
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-        Query myTopPostsQuery = mDatabaseRef.child("Posts");
-        myTopPostsQuery
-                .orderByChild("timeStamp")
-                .startAt(s)
-                .limitToFirst(TOTAL_ITEM_EACH_LOAD)
-                .addValueEventListener(new ValueEventListener() {
+        db = FirebaseFirestore.getInstance();
+        query = db.collection("Posts")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .limit(TOTAL_ITEM_EACH_LOAD);
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for(DataSnapshot posts:dataSnapshot.getChildren()) {
-                            PostViewObject mPostView = posts.getValue(PostViewObject.class);
-                            if(s.equals(mPostView.getTimeStamp())){continue;}
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot posts : queryDocumentSnapshots.getDocuments()) {
+                            PostViewObject mPostView = posts.toObject(PostViewObject.class);
                             PostViewObject.add(mPostView);
-                            s = String.valueOf(mPostView.getTimeStamp());
                         }
                         mPostViewAdapter.notifyDataSetChanged();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
                     }
                 });
     }
@@ -129,10 +122,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(context,AboutApp.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_shareapp) {
-            return true;
         }else if(id == R.id.nav_feedback_text) {
             Intent intent = new Intent(context,feedback.class);
+            startActivity(intent);
+            return true;
+        }else if(id == R.id.nav_shareapp) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT,"Hey, download this app!");
+            intent.setType("text/plain");
+            startActivity(intent);
+        }else if(id == R.id.nav_aboutdev) {
+            Intent intent = new Intent(context,AboutDev.class);
             startActivity(intent);
             return true;
         }
