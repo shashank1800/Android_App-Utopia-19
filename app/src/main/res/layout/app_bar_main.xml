@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#2D2D2D">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,8 +15,8 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_80dp"
             android:fitsSystemWindows="true"
@@ -33,167 +33,25 @@
                 android:layout_height="90dp"
                 android:src="@drawable/ic_launcher_foreground"
                 android:layout_gravity="center"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                android:contentDescription="TODO" />
 
-            <androidx.appcompat.widget.Toolbar
+            <!--<androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
                 android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin"/>-->
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
-    <!--<androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="@dimen/dimen_10dp">
-            <TableRow>
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.MaterialComponents.CardView.Checkable"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_column="1"
-                    android:layout_margin="@dimen/dimen_10dp"
-                    app:cardCornerRadius="@dimen/dimen_10dp"
-                    app:cardElevation="@dimen/dimen_6dp">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="150dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/groupicon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:text="Group Name 1"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.MaterialComponents.CardView.Checkable"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"
-                    android:layout_marginBottom="@dimen/dimen_10dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/dimen_10dp"
-                    app:cardElevation="@dimen/dimen_6dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="150dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/groupicon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:text="Group Name 1"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </TableRow>
-            <TableRow>
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.MaterialComponents.CardView.Checkable"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_column="1"
-                    android:layout_margin="@dimen/dimen_10dp"
-                    app:cardCornerRadius="@dimen/dimen_10dp"
-                    app:cardElevation="@dimen/dimen_6dp">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="150dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/groupicon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:text="Group Name 1"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Widget.MaterialComponents.CardView.Checkable"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="@dimen/dimen_10dp"
-                    android:layout_marginRight="@dimen/dimen_10dp"
-                    android:layout_marginBottom="@dimen/dimen_10dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/dimen_10dp"
-                    app:cardElevation="@dimen/dimen_6dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="150dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/groupicon" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:text="Group Name 1"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </TableRow>
-        </TableLayout>
-        </androidx.core.widget.NestedScrollView>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_posts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2D2D2D"/>
+            android:layout_height="wrap_content" />
 
 </LinearLayout>
 

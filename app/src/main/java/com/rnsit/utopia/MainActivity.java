@@ -13,15 +13,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -40,7 +39,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<PostViewObject> PostViewObject;
     private FirebaseFirestore db;
     private Query query;
+
     private static final int TOTAL_ITEM_EACH_LOAD = 5;
+    private DocumentSnapshot lastVisible;
+    private boolean isScrolling = false;
+    private boolean isLastItemReached = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,24 +67,80 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
         mRecyclerViewPost.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(context);
         mRecyclerViewPost.setLayoutManager(linearLayoutManager);
         mPostViewAdapter = new PostViewAdapter(this,PostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
 
-        loadData();
+        //loadData();
 
-        mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
-
+        db = FirebaseFirestore.getInstance();
+        query = db.collection("Posts")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .limit(TOTAL_ITEM_EACH_LOAD);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onLoadMore() {
-                loadData();
-            }
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        PostViewObject mPostView = document.toObject(PostViewObject.class);
+                        PostViewObject.add(mPostView);
+                    }
+                    mPostViewAdapter.notifyDataSetChanged();
+                    lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
 
+                    RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                            super.onScrollStateChanged(recyclerView, newState);
+                            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                                isScrolling = true;
+                            }
+                        }
+
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+
+                            LinearLayoutManager linearLayoutManager = ((LinearLayoutManager) recyclerView.getLayoutManager());
+                            int firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+                            int visibleItemCount = linearLayoutManager.getChildCount();
+                            int totalItemCount = linearLayoutManager.getItemCount();
+
+                            if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+                                isScrolling = false;
+                                Query nextQuery = db.collection("Posts")
+                                        .orderBy("timeStamp",Query.Direction.DESCENDING)
+                                        .startAfter(lastVisible)
+                                        .limit(TOTAL_ITEM_EACH_LOAD);
+                                nextQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> t) {
+                                        if (t.isSuccessful()) {
+                                            for (DocumentSnapshot d : t.getResult()) {
+                                                PostViewObject mPostView = d.toObject(PostViewObject.class);
+                                                PostViewObject.add(mPostView);
+                                            }
+                                            mPostViewAdapter.notifyDataSetChanged();
+                                            lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
+
+                                            if (t.getResult().size() < TOTAL_ITEM_EACH_LOAD) {
+                                                isLastItemReached = true;
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    };
+                    mRecyclerViewPost.addOnScrollListener(onScrollListener);
+                }
+            }
         });
+
     }
 
-    private void loadData() {
+    /*private void loadData() {
         db = FirebaseFirestore.getInstance();
         query = db.collection("Posts")
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
@@ -96,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         mPostViewAdapter.notifyDataSetChanged();
                     }
                 });
-    }
+    }*/
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rnsit.utopia">
 
@@ -15,11 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AboutDev"></activity>
-        <activity android:name=".SplashScreen"></activity>
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/MainActivityTheme">
+
+        <activity android:name=".SplashScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,36 +26,45 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:theme="@style/MainActivityTheme">
+        </activity>
+        <activity
             android:name=".Teams"
-            android:parentActivityName=".Teams">
+            android:parentActivityName=".Teams"
+            android:label="Teams">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".Results"
-            android:parentActivityName=".Results">
+            android:parentActivityName=".Results"
+            android:label="Results">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".Events"
-            android:parentActivityName=".Events">
+            android:parentActivityName=".Events"
+            android:label="Events">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".feedback"
-            android:parentActivityName=".feedback">
+            android:parentActivityName=".feedback"
+            android:label="Feedback">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".Contact"
-            android:parentActivityName=".Contact">
+            android:parentActivityName=".Contact"
+            android:label="Coordinators">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
@@ -64,6 +72,14 @@
         <activity
             android:name=".AboutApp"
             android:parentActivityName=".AboutApp">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rnsit.utopia.MainActivity" />
+        </activity>
+
+        <activity android:name=".AboutDev"
+            android:parentActivityName=".AboutDev"
+            android:label="About Developer">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />

@@ -24,12 +24,13 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView postDetail;
+        public TextView postDetail,timeStamp;
         public ImageView imagePostIV;
 
         public ViewHolder(@Nullable View itemView) {
             super(itemView);
             postDetail = (TextView) itemView.findViewById(R.id.postDetail);
+            timeStamp = (TextView) itemView.findViewById(R.id.timeStamp);
             imagePostIV = (ImageView) itemView.findViewById(R.id.imagePostIV);
         }
     }
@@ -47,9 +48,15 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
                 .override(500, 500)
                 .fitCenter();
 
+        String time = String.valueOf(mPosts.get(i).getTimeStamp());
+        String hr = time.substring(8,10);
+        String min = time.substring(10,12);
+        time = hr+":"+min;
+
         viewHolder.postDetail.setTag(mPosts.get(i));
         viewHolder.postDetail.setText(mPosts.get(i).getPostDetail());
         Glide.with(context).load(mPosts.get(i).getImagePostURL()).apply(myOptions).into(viewHolder.imagePostIV);
+        viewHolder.timeStamp.setText(time);
     }
 
     @Override
