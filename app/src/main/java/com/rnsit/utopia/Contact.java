@@ -12,22 +12,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Contact extends AppCompatActivity implements View.OnClickListener{
+public class Contact extends AppCompatActivity /*implements View.OnClickListener*/{
 
-    private TextView contact_r1c1, contact_r1c2,contact_r2c1, contact_r2c2,contact_r3c1,contact_r3c2,contact_r4c1,contact_r4c2,contact_r5c1,contact_r5c2;
+    /*private TextView contact_r1c1, contact_r1c2,contact_r2c1, contact_r2c2,contact_r3c1,contact_r3c2,contact_r4c1,contact_r4c2,contact_r5c1,contact_r5c2;
     private ImageView copy_r1c1,copy_r1c2,copy_r2c1,copy_r2c2,copy_r3c1,copy_r3c2,copy_r4c1,copy_r4c2,copy_r5c1,copy_r5c2;
 
     private ClipboardManager clipboard;
     private ClipData clip;
-    private Context context;
+    private Context context;*/
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        context= this;
+        /*context= this;
 
         contact_r1c1 = (TextView)findViewById(R.id.contact_r1c1);
         contact_r1c2 = (TextView)findViewById(R.id.contact_r1c2);
@@ -151,5 +151,6 @@ public class Contact extends AppCompatActivity implements View.OnClickListener{
             }
         }
 
+    }*/
     }
 }

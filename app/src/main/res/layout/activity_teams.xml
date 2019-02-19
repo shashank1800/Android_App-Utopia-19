@@ -5,9 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark"
     android:orientation="vertical"
     tools:context=".Teams">
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_20dp" />
+
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.MaterialComponents.CardView.Checkable"
         android:layout_width="match_parent"
@@ -23,11 +28,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/groupicon" />
+                android:src="@drawable/myphoto" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,11 +88,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/groupicon" />
+                android:src="@drawable/myphoto" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,11 +149,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/groupicon" />
+                android:src="@drawable/myphoto" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -202,11 +210,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/groupicon" />
+                android:src="@drawable/myphoto" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -246,4 +255,7 @@
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_20dp" />
 </LinearLayout>

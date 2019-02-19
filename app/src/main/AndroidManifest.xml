@@ -19,15 +19,15 @@
 
         <activity android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/MainActivityTheme">
         </activity>
         <activity
             android:name=".Teams"
@@ -85,7 +85,7 @@
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
 
-        <service android:name=".MyFirebaseMessagingService">
+        <!--<service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -93,7 +93,7 @@
             <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
                 android:resource="@drawable/ic_notifications" />
-        </service>
+        </service>-->
     </application>
 
 </manifest>

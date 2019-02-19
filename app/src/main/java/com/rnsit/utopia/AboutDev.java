@@ -14,16 +14,16 @@ public class AboutDev extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_dev);
 
-        pdfView = (PDFView) findViewById(R.id.pdfView);
-        displayFromAsset();
+        /*pdfView = (PDFView) findViewById(R.id.pdfView);
+        displayFromAsset();*/
     }
 
-    private void displayFromAsset() {
+    /*private void displayFromAsset() {
 
         pdfView.fromAsset("tech_fest.pdf")
                 .defaultPage(0)
                 .scrollHandle(new DefaultScrollHandle(this))
                 .load();
-    }
+    }*/
 
 }
