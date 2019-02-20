@@ -22,14 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="115dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/dimen_100dp"
-                android:layout_height="@dimen/dimen_100dp"
+                android:layout_width="@dimen/dimen_150dp"
+                android:layout_height="@dimen/dimen_150dp"
                 android:src="@drawable/myphoto"
                 android:layout_gravity="center"/>
             <TextView

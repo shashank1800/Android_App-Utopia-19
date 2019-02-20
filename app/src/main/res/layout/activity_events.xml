@@ -16,6 +16,7 @@
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MaterialComponents.CardView.Checkable"
+            android:id="@+id/totalEvents"
             android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MaterialComponents.CardView.Checkable"
+            android:id="@+id/upcomingEvents"
             android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

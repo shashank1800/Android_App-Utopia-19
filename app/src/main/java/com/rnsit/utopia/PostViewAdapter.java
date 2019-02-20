@@ -53,7 +53,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         String min = time.substring(10,12);
         if(Integer.parseInt(hr)>12){
             int h = Integer.parseInt(hr)-12;
-            time = String.valueOf(h)+":"+min+"PM";
+            time = String.valueOf(h)+":"+min+" PM";
         }else {
             time = hr+":"+min+"AM";
         }
@@ -67,6 +67,11 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     @Override
     public int getItemCount() {
         return mPosts.size();
+    }
+
+    public void clear(){
+        mPosts.clear();
+        notifyDataSetChanged();
     }
 
 }

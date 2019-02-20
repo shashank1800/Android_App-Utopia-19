@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rnsit.utopia">
 
@@ -16,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".SplashScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+        <activity android:name=".UpcomingEvents"></activity>
+        <activity android:name=".TotalEvents" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/MainActivityTheme">
@@ -31,40 +31,40 @@
         </activity>
         <activity
             android:name=".Teams"
-            android:parentActivityName=".Teams"
-            android:label="Teams">
+            android:label="Teams"
+            android:parentActivityName=".Teams">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".Results"
-            android:parentActivityName=".Results"
-            android:label="Results">
+            android:label="Results"
+            android:parentActivityName=".Results">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".Events"
-            android:parentActivityName=".Events"
-            android:label="Events">
+            android:label="Events"
+            android:parentActivityName=".Events">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".feedback"
-            android:parentActivityName=".feedback"
-            android:label="Feedback">
+            android:label="Feedback"
+            android:parentActivityName=".feedback">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
             android:name=".Contact"
-            android:parentActivityName=".Contact"
-            android:label="Coordinators">
+            android:label="Coordinators"
+            android:parentActivityName=".Contact">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
@@ -76,24 +76,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-
-        <activity android:name=".AboutDev"
-            android:parentActivityName=".AboutDev"
-            android:label="About Developer">
+        <activity
+            android:name=".AboutDev"
+            android:label="About Developer"
+            android:parentActivityName=".AboutDev">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-
-        <!--<service android:name=".MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/ic_notifications" />
-        </service>-->
     </application>
 
 </manifest>
