@@ -6,6 +6,7 @@ import com.bumptech.glide.request.RequestOptions;
 import android.content.Context;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +45,23 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(PostViewAdapter.ViewHolder viewHolder, int i) {
-        RequestOptions myOptions = new RequestOptions()
-                .override(16, 9)
-                .fitCenter();
-
+        int x=700,y=400;
         String time = String.valueOf(mPosts.get(i).getTimeStamp());
         String hr = time.substring(8,10);
         String min = time.substring(10,12);
+
+        if(!MainActivity.sharedPreferences.getString("switch","").matches("")){
+            String is = MainActivity.sharedPreferences.getString("switch","");
+            if(is.matches("0")){
+                x = 900;
+                y = 1000;
+            }
+        }
+
+        RequestOptions myOptions = new RequestOptions()
+                .override(x, y)
+                .fitCenter();
+
         if(Integer.parseInt(hr)>12){
             int h = Integer.parseInt(hr)-12;
             time = String.valueOf(h)+":"+min+" PM";

@@ -9,10 +9,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,10 +29,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
+    private Switch drawerSwitch;
     private Context context;
 
     private NavigationView navigationView;
@@ -41,7 +47,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final int TOTAL_ITEM_EACH_LOAD = 7;
     public static DocumentSnapshot lastVisible;
+    public static SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +75,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mRecyclerViewPost.setLayoutManager(linearLayoutManager);
-        mPostViewAdapter = new PostViewAdapter(this,PostViewObject);
+        mPostViewAdapter = new PostViewAdapter(this, PostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
+
+        sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preference_key), Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        drawerSwitch = (Switch) navigationView.getMenu().findItem(R.id.saveData).getActionView();
+        drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    editor.putString("switch","1").apply();
+                }
+                else
+                    editor.putString("switch","0").apply();
+            }
+        });
+
+        if(!MainActivity.sharedPreferences.getString("switch","").matches("")){
+            String is = MainActivity.sharedPreferences.getString("switch","");
+            if(is.matches("0")) drawerSwitch.setChecked(false);
+            else drawerSwitch.setChecked(true);
+        }
 
         db = FirebaseFirestore.getInstance();
         query = db.collection("Posts")
-                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .limit(TOTAL_ITEM_EACH_LOAD);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -82,17 +112,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         PostViewObject.add(mPostView);
                     }
                     mPostViewAdapter.notifyDataSetChanged();
-                    if(!(task.getResult().size()==0))
+                    if (!(task.getResult().size() == 0))
                         lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
 
                     mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
                         @Override
-                        public void onLoadMore(){}
+                        public void onLoadMore() {
+                        }
 
                     });
                 }
             }
         });
+
+
 
     }
 
@@ -101,40 +134,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
         if (id == R.id.nav_teams) {
-            Intent intent = new Intent(context,Teams.class);
+            Intent intent = new Intent(context, Teams.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_events) {
-            Intent intent = new Intent(context,Events.class);
+        } else if (id == R.id.nav_events) {
+            Intent intent = new Intent(context, Events.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_results) {
-            Intent intent = new Intent(context,Results.class);
+        } else if (id == R.id.nav_results) {
+            Intent intent = new Intent(context, Results.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_contact) {
-            Intent intent = new Intent(context,Contact.class);
+        } else if (id == R.id.nav_contact) {
+            Intent intent = new Intent(context, Contact.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_about_utopia) {
-            Intent intent = new Intent(context,AboutApp.class);
+        } else if (id == R.id.nav_about_utopia) {
+            Intent intent = new Intent(context, AboutApp.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_feedback_text) {
-            Intent intent = new Intent(context,feedback.class);
+        } else if (id == R.id.nav_feedback_text) {
+            Intent intent = new Intent(context, feedback.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.nav_shareapp) {
+        } else if (id == R.id.nav_shareapp) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_TEXT,"Hey, download this app!");
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!");
             intent.setType("text/plain");
             startActivity(intent);
-        }else if(id == R.id.nav_aboutdev) {
-            Intent intent = new Intent(context,AboutDev.class);
+        } else if (id == R.id.nav_aboutdev) {
+            Intent intent = new Intent(context, AboutDev.class);
             startActivity(intent);
             return true;
         }
+
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

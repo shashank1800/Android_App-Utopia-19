@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class Results extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    public BottomNavigationView navigationView;
+    public BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
     private Context context;
@@ -43,8 +43,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         setContentView(R.layout.activity_results);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        navigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
-        navigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         PostViewObject = new ArrayList<PostViewObject>();
 
@@ -55,7 +55,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerViewPost.setLayoutManager(linearLayoutManager);
         mPostViewAdapter = new PostViewAdapter(this,PostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
-        navigationView.setSelectedItemId(R.id.sports);
+        bottomNavigationView.setSelectedItemId(R.id.sports);
 
     }
 
