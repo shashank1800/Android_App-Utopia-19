@@ -15,20 +15,16 @@ public class TotalEvents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total_events);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         pdfView = (PDFView) findViewById(R.id.pdfView);
         displayFromAsset();
     }
-    private void displayFromAsset() {
 
+    private void displayFromAsset() {
         pdfView.fromAsset("tech_fest.pdf")
                 .defaultPage(0)
                 .scrollHandle(new DefaultScrollHandle(this))
                 .load();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_in);
     }
 }

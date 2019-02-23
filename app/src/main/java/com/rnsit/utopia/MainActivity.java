@@ -84,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerSwitch = (Switch) navigationView.getMenu().findItem(R.id.saveData).getActionView();
         drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
                     editor.putString("switch","1").apply();
                 }
                 else
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        if(!MainActivity.sharedPreferences.getString("switch","").matches("")){
-            String is = MainActivity.sharedPreferences.getString("switch","");
+        if(!sharedPreferences.getString("switch","").matches("")){
+            String is = sharedPreferences.getString("switch","");
             if(is.matches("0")) drawerSwitch.setChecked(false);
             else drawerSwitch.setChecked(true);
         }

@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -15,8 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UpcomingEvents"></activity>
-        <activity android:name=".TotalEvents" />
+        <activity android:name=".UpcomingEvents"
+            android:parentActivityName=".UpcomingEvents">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rnsit.utopia.MainActivity" />
+        </activity>
+        <activity android:name=".TotalEvents"
+            android:parentActivityName=".TotalEvents">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rnsit.utopia.MainActivity" />
+
+        </activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -84,6 +94,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
