@@ -1,4 +1,4 @@
-package com.rnsit.utopia;
+package com.rnsit.utopia.AdapterObjects;
 
 import java.io.Serializable;
 

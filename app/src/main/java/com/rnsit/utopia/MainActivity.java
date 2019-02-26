@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +25,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.rnsit.utopia.AdapterObjects.PostViewObject;
+import com.rnsit.utopia.Adapters.EndlessRecyclerOnScrollListener;
+import com.rnsit.utopia.Adapters.PostViewAdapter;
 
 import java.util.ArrayList;
 
@@ -39,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
 
     private RecyclerView mRecyclerViewPost;
-    protected static PostViewAdapter mPostViewAdapter;
+    public static PostViewAdapter mPostViewAdapter;
     private LinearLayoutManager linearLayoutManager;
-    protected static ArrayList<PostViewObject> PostViewObject;
+    public static ArrayList<com.rnsit.utopia.AdapterObjects.PostViewObject> PostViewObject;
     private FirebaseFirestore db;
     private Query query;
 

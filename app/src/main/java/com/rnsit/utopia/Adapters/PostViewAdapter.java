@@ -1,7 +1,10 @@
-package com.rnsit.utopia;
+package com.rnsit.utopia.Adapters;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.rnsit.utopia.MainActivity;
+import com.rnsit.utopia.AdapterObjects.PostViewObject;
+import com.rnsit.utopia.R;
 
 import android.content.Context;
 import androidx.annotation.Nullable;

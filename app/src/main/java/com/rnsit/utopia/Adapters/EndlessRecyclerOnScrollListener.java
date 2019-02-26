@@ -1,4 +1,4 @@
-package com.rnsit.utopia;
+package com.rnsit.utopia.Adapters;
 
 import android.widget.AbsListView;
 
@@ -8,6 +8,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.rnsit.utopia.MainActivity;
+import com.rnsit.utopia.AdapterObjects.PostViewObject;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;

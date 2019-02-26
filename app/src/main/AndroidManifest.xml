@@ -14,18 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UpcomingEvents"
+
+        <activity
+            android:name=".UpcomingEvents"
             android:parentActivityName=".UpcomingEvents">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
-        <activity android:name=".TotalEvents"
+        <activity
+            android:name=".TotalEvents"
             android:parentActivityName=".TotalEvents">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
-
         </activity>
         <activity
             android:name=".SplashScreen"
