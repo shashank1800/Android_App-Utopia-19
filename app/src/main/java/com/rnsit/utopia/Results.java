@@ -27,6 +27,7 @@ import com.rnsit.utopia.Adapters.CultViewAdapter;
 import com.rnsit.utopia.Adapters.FunViewAdapter;
 import com.rnsit.utopia.Adapters.LitViewAdapter;
 import com.rnsit.utopia.Adapters.SportsViewAdapter;
+import com.rnsit.utopia.Adapters.TechViewAdapter;
 
 import java.util.ArrayList;
 
@@ -47,14 +48,15 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     private SportsViewAdapter mSportsViewAdapter;
     private CultViewAdapter mCultViewAdapter;
     private LitViewAdapter mLitViewAdapter;
+    private TechViewAdapter mTechViewAdapter;
 
     private LinearLayoutManager linearLayoutManager1,linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5;
 
     private ArrayList<FunObject> funs;
     private ArrayList<SportsObject> sports;
-    private ArrayList<TechObject> techs;
     private ArrayList<CultObject> cults;
     private ArrayList<LitObject> lits;
+    private ArrayList<TechObject> techs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +66,9 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
         funs = new ArrayList<FunObject>();
         sports = new ArrayList<SportsObject>();
-        techs = new ArrayList<TechObject>();
         cults = new ArrayList<CultObject>();
         lits = new ArrayList<LitObject>();
+        techs = new ArrayList<TechObject>();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -78,7 +80,10 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerTech = (RecyclerView) findViewById(R.id.rec_tech);
 
         mRecyclerFun.setHasFixedSize(true);
+        mRecyclerCult.setHasFixedSize(true);
         mRecyclerSports.setHasFixedSize(true);
+        mRecyclerLit.setHasFixedSize(true);
+        mRecyclerTech.setHasFixedSize(true);
 
         linearLayoutManager1 = new LinearLayoutManager(context);
         linearLayoutManager1.setOrientation(RecyclerView.VERTICAL);
@@ -108,11 +113,13 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mCultViewAdapter = new CultViewAdapter(context,cults);
         mSportsViewAdapter = new SportsViewAdapter(context,sports);
         mLitViewAdapter = new LitViewAdapter(context,lits);
+        mTechViewAdapter = new TechViewAdapter(context,techs);
 
         mRecyclerFun.setAdapter(mFunViewAdapter);
         mRecyclerCult.setAdapter(mCultViewAdapter);
         mRecyclerSports.setAdapter(mSportsViewAdapter);
         mRecyclerLit.setAdapter(mLitViewAdapter);
+        mRecyclerTech.setAdapter(mTechViewAdapter);
 
         bottomNavigationView.setSelectedItemId(R.id.bot_sports);
 
@@ -185,6 +192,13 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 break;
             case R.id.bot_technical:ClearAdapter();
                 ClearVisibility();
+                mRecyclerTech.setVisibility(View.VISIBLE);
+                techs.add(new TechObject("Event Name","Winner Name","1"));
+                techs.add(new TechObject("Event Name","Winner Name","1"));
+                techs.add(new TechObject("Event Name","Winner Name","1"));
+                techs.add(new TechObject("Event Name","Winner Name","1"));
+                techs.add(new TechObject("Event Name","Winner Name","1"));
+                mTechViewAdapter.notifyDataSetChanged();
                 break;
         }
         return true;
@@ -203,5 +217,6 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mCultViewAdapter.clear();
         mSportsViewAdapter.clear();
         mLitViewAdapter.clear();
+        mTechViewAdapter.clear();
     }
 }

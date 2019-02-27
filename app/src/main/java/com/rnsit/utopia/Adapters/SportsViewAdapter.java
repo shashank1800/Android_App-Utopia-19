@@ -1,17 +1,17 @@
 package com.rnsit.utopia.Adapters;
 
-import com.rnsit.utopia.AdapterObjects.SportsObject;
-import com.rnsit.utopia.R;
+        import com.rnsit.utopia.AdapterObjects.SportsObject;
+        import com.rnsit.utopia.R;
 
-import android.content.Context;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
+        import android.content.Context;
+        import androidx.annotation.Nullable;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.util.ArrayList;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.TextView;
+        import java.util.ArrayList;
 
 
 public class SportsViewAdapter extends RecyclerView.Adapter<SportsViewAdapter.ViewHolder> {
