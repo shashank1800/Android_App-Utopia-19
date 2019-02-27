@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark"
+    android:background="@drawable/gradient_about_dev"
     tools:context=".AboutDev">
 
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_height="@dimen/dimen_200dp"
         android:gravity="center"
         android:layout_marginBottom="@dimen/dimen_30dp"
-        android:background="@drawable/gradient_about_dev">
+        android:background="@drawable/post">
 
     </LinearLayout>
 
@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="@dimen/dimen_150dp"
-                android:layout_height="@dimen/dimen_150dp"
+                android:layout_width="@dimen/dimen_120dp"
+                android:layout_height="@dimen/dimen_120dp"
                 android:src="@drawable/myphoto"
                 android:layout_gravity="center"/>
             <TextView
@@ -42,37 +42,66 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/myName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen_100dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_50dp"
-            android:src="@drawable/ic_copy_toclipboard"
-            android:layout_margin="@dimen/dimen_10dp"/>
-        <ImageView
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_50dp"
-            android:src="@drawable/ic_copy_toclipboard"
-            android:layout_margin="@dimen/dimen_10dp"/>
-        <ImageView
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_50dp"
-            android:src="@drawable/ic_copy_toclipboard"
-            android:layout_margin="@dimen/dimen_10dp"/>
-        <ImageView
-            android:layout_width="@dimen/dimen_50dp"
-            android:layout_height="@dimen/dimen_50dp"
-            android:src="@drawable/ic_copy_toclipboard"
-            android:layout_margin="@dimen/dimen_10dp"/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shashank Bhat"
+            android:layout_gravity="center"
+            android:textSize="@dimen/dimen_20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CSE"
+            android:layout_gravity="center"
+            android:textSize="@dimen/dimen_16sp"
+            android:textStyle="bold"/>
+
     </LinearLayout>
 
-    <!--<com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>-->
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myName"
+        android:layout_margin="@dimen/dimen_10dp"
+        android:textSize="@dimen/dimen_18sp"
+        android:textStyle="bold"
+        android:text="Hey I'm an Android Developer. Lolololololololololo\nlolololololololololololo\nlol lolol lollol lololollolololololol"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/desc"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/dimen_40dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:src="@drawable/facebook"
+            android:layout_margin="@dimen/dimen_10dp"/>
+        <ImageView
+            android:layout_width="@dimen/dimen_40dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:src="@drawable/linkedin"
+            android:layout_margin="@dimen/dimen_10dp"/>
+        <ImageView
+            android:layout_width="@dimen/dimen_40dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:src="@drawable/google_plus"
+            android:layout_margin="@dimen/dimen_10dp"/>
+        <ImageView
+            android:layout_width="@dimen/dimen_40dp"
+            android:layout_height="@dimen/dimen_40dp"
+            android:src="@drawable/instagram"
+            android:layout_margin="@dimen/dimen_10dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

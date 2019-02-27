@@ -14,6 +14,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/eventName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,17 +22,19 @@
             android:text="Event Name"
             android:textColor="@color/postDetailColor"
             android:textStyle="bold"
-            android:textSize="@dimen/dimen_20sp"
+            android:textSize="@dimen/dimen_18sp"
             android:fontFamily="sans-serif"/>
         <TextView
+            android:id="@+id/subHead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_5dp"
             android:layout_weight="1"
             android:text="Finals"
             android:textColor="@color/postDetailColor"
             android:textStyle="bold"
-            android:textSize="@dimen/dimen_18sp"
+            android:textSize="@dimen/dimen_16sp"
             android:fontFamily="sans-serif"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,13 +49,16 @@
                 <ImageView
                     android:layout_width="@dimen/dimen_50dp"
                     android:layout_height="@dimen/dimen_50dp"
+                    android:layout_marginRight="@dimen/dimen_30dp"
                     android:src="@drawable/ic_launcher_background"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="end"/>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="V/S"
+                android:textSize="@dimen/dimen_20sp"
+                android:textStyle="bold"
                 android:layout_gravity="center"/>
             <LinearLayout
                 android:layout_width="@dimen/dimen_0dp"
@@ -62,19 +68,22 @@
                 <ImageView
                     android:layout_width="@dimen/dimen_50dp"
                     android:layout_height="@dimen/dimen_50dp"
+                    android:layout_marginLeft="@dimen/dimen_30dp"
                     android:src="@drawable/ic_launcher_background"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="start"/>
             </LinearLayout>
         </LinearLayout>
         <TextView
+            android:id="@+id/winnerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
             android:text="Team Name Won"
             android:layout_gravity="center"
             android:textColor="@color/postDetailColor"
             android:textStyle="bold"
-            android:textSize="@dimen/dimen_20sp"
+            android:textSize="@dimen/dimen_16sp"
             android:fontFamily="sans-serif"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

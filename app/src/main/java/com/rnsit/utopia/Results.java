@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,11 +18,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.rnsit.utopia.AdapterObjects.CultObject;
 import com.rnsit.utopia.AdapterObjects.FunObject;
-import com.rnsit.utopia.AdapterObjects.PostViewObject;
+import com.rnsit.utopia.AdapterObjects.LitObject;
 import com.rnsit.utopia.AdapterObjects.SportsObject;
 import com.rnsit.utopia.AdapterObjects.TechObject;
+import com.rnsit.utopia.Adapters.CultViewAdapter;
 import com.rnsit.utopia.Adapters.FunViewAdapter;
+import com.rnsit.utopia.Adapters.LitViewAdapter;
+import com.rnsit.utopia.Adapters.SportsViewAdapter;
 
 import java.util.ArrayList;
 
@@ -30,17 +36,25 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
     private Context context;
-
-    private RecyclerView mRecyclerFun,mRecyclerSports,mRecyclerTech;
-    private FunViewAdapter mFunViewAdapter;
-    private LinearLayoutManager linearLayoutManager1,linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5;
     private FirebaseFirestore db;
     private Query query;
     private static final int TOTAL_ITEM_EACH_LOAD = 7;
     public static DocumentSnapshot lastVisible;
+
+    private RecyclerView mRecyclerFun,mRecyclerSports,mRecyclerCult,mRecyclerTech,mRecyclerLit;
+
+    private FunViewAdapter mFunViewAdapter;
+    private SportsViewAdapter mSportsViewAdapter;
+    private CultViewAdapter mCultViewAdapter;
+    private LitViewAdapter mLitViewAdapter;
+
+    private LinearLayoutManager linearLayoutManager1,linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5;
+
     private ArrayList<FunObject> funs;
     private ArrayList<SportsObject> sports;
-    private ArrayList<TechObject> tech;
+    private ArrayList<TechObject> techs;
+    private ArrayList<CultObject> cults;
+    private ArrayList<LitObject> lits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +64,21 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
         funs = new ArrayList<FunObject>();
         sports = new ArrayList<SportsObject>();
-        tech = new ArrayList<TechObject>();
+        techs = new ArrayList<TechObject>();
+        cults = new ArrayList<CultObject>();
+        lits = new ArrayList<LitObject>();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        mRecyclerFun = (RecyclerView) findViewById(R.id.results);
+        mRecyclerFun = (RecyclerView) findViewById(R.id.rec_fun);
+        mRecyclerCult = (RecyclerView) findViewById(R.id.rec_cult);
+        mRecyclerSports = (RecyclerView) findViewById(R.id.rec_sports);
+        mRecyclerLit = (RecyclerView) findViewById(R.id.rec_lit);
+        mRecyclerTech = (RecyclerView) findViewById(R.id.rec_tech);
 
         mRecyclerFun.setHasFixedSize(true);
+        mRecyclerSports.setHasFixedSize(true);
 
         linearLayoutManager1 = new LinearLayoutManager(context);
         linearLayoutManager1.setOrientation(RecyclerView.VERTICAL);
@@ -78,9 +99,20 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         linearLayoutManager5.setOrientation(RecyclerView.VERTICAL);
 
         mRecyclerFun.setLayoutManager(linearLayoutManager1);
+        mRecyclerCult.setLayoutManager(linearLayoutManager2);
+        mRecyclerSports.setLayoutManager(linearLayoutManager3);
+        mRecyclerLit.setLayoutManager(linearLayoutManager4);
+        mRecyclerTech.setLayoutManager(linearLayoutManager5);
 
-        mFunViewAdapter = new FunViewAdapter(this,funs);
+        mFunViewAdapter = new FunViewAdapter(context,funs);
+        mCultViewAdapter = new CultViewAdapter(context,cults);
+        mSportsViewAdapter = new SportsViewAdapter(context,sports);
+        mLitViewAdapter = new LitViewAdapter(context,lits);
+
         mRecyclerFun.setAdapter(mFunViewAdapter);
+        mRecyclerCult.setAdapter(mCultViewAdapter);
+        mRecyclerSports.setAdapter(mSportsViewAdapter);
+        mRecyclerLit.setAdapter(mLitViewAdapter);
 
         bottomNavigationView.setSelectedItemId(R.id.bot_sports);
 
@@ -91,7 +123,15 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
         int id = item.getItemId();
         switch (id){
-            case R.id.bot_sports:mFunViewAdapter.clear();
+            case R.id.bot_sports:ClearAdapter();
+                ClearVisibility();
+                mRecyclerSports.setVisibility(View.VISIBLE);
+                sports.add(new SportsObject("Event Name","Finals","Team Name1","teamName2","Team Name1"));
+                sports.add(new SportsObject("Event Name","Semi Finals","teamName1","teamName2","Team Name1"));
+                sports.add(new SportsObject("Event Name","Finals","teamName1","teamName2","Team Name1"));
+                sports.add(new SportsObject("Event Name","","teamName1","teamName2","Team Name1"));
+                sports.add(new SportsObject("Event Name","","teamName1","teamName2","Team Name1"));
+                mSportsViewAdapter.notifyDataSetChanged();
                 /*mPostViewAdapter = new PostViewAdapter(this,PostViewObject);
                 mRecyclerViewPost.setAdapter(mPostViewAdapter);
                 mPostViewAdapter.clear();
@@ -113,6 +153,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 });*/
                 break;
             case R.id.bot_fun: ClearAdapter();
+                ClearVisibility();
+                mRecyclerFun.setVisibility(View.VISIBLE);
                 funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
                 funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
                 funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
@@ -122,16 +164,44 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 break;
 
             case R.id.bot_cultural:ClearAdapter();
+                ClearVisibility();
+                mRecyclerCult.setVisibility(View.VISIBLE);
+                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
+                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
+                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
+                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
+                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
+                mCultViewAdapter.notifyDataSetChanged();
                 break;
             case R.id.bot_literature:ClearAdapter();
+                ClearVisibility();
+                mRecyclerLit.setVisibility(View.VISIBLE);
+                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
+                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
+                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
+                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
+                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
+                mLitViewAdapter.notifyDataSetChanged();
                 break;
             case R.id.bot_technical:ClearAdapter();
+                ClearVisibility();
                 break;
         }
         return true;
     }
 
+    private void ClearVisibility() {
+        mRecyclerFun.setVisibility(View.GONE);
+        mRecyclerCult.setVisibility(View.GONE);
+        mRecyclerSports.setVisibility(View.GONE);
+        mRecyclerLit.setVisibility(View.GONE);
+        mRecyclerTech.setVisibility(View.GONE);
+    }
+
     private void ClearAdapter() {
         mFunViewAdapter.clear();
+        mCultViewAdapter.clear();
+        mSportsViewAdapter.clear();
+        mLitViewAdapter.clear();
     }
 }

@@ -22,7 +22,7 @@
             android:text="Event Name"
             android:textColor="@color/postDetailColor"
             android:textStyle="bold"
-            android:textSize="@dimen/dimen_20sp"
+            android:textSize="@dimen/dimen_18sp"
             android:fontFamily="sans-serif"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                     android:text="Winner Name"
                     android:textColor="@color/postDetailColor"
                     android:textStyle="bold"
-                    android:textSize="@dimen/dimen_16sp"
+                    android:textSize="@dimen/dimen_18sp"
                     android:fontFamily="sans-serif"/>
                 <ImageView
                     android:layout_width="@dimen/dimen_50dp"
@@ -87,7 +87,7 @@
                     android:text="Winner Name"
                     android:textColor="@color/postDetailColor"
                     android:textStyle="bold"
-                    android:textSize="@dimen/dimen_16sp"
+                    android:textSize="@dimen/dimen_18sp"
                     android:fontFamily="sans-serif"/>
                 <ImageView
                     android:layout_width="@dimen/dimen_50dp"
