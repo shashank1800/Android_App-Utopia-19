@@ -7,24 +7,27 @@ import android.os.Bundle;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
-public class TotalEvents extends AppCompatActivity {
+
+public class TeamPdfView extends AppCompatActivity {
 
     private Context context;
     private PDFView pdfView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_total_events);
+        setContentView(R.layout.activity_team_pdf_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        String pdfName = getIntent().getStringExtra("pdfName");
 
         pdfView = (PDFView) findViewById(R.id.pdfView);
-        displayFromAsset();
+        displayFromAsset(pdfName);
     }
-    private void displayFromAsset() {
-        pdfView.fromAsset("tech_fest.pdf")
+    private void displayFromAsset(String pdfName) {
+        pdfView.fromAsset(pdfName)
                 .defaultPage(0)
                 .scrollHandle(new DefaultScrollHandle(context))
                 .load();

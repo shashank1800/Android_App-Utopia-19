@@ -23,6 +23,7 @@
         android:background="@drawable/post"
         app:cardElevation="@dimen/dimen_6dp">
         <LinearLayout
+            android:id="@+id/team1Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -83,67 +84,7 @@
         android:background="@drawable/post"
         app:cardElevation="@dimen/dimen_6dp">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:src="@drawable/myphoto" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_20dp"
-                    android:layout_gravity="center"
-                    android:text="Magnum Meghadvas"
-                    android:textSize="@dimen/dimen_20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/dark" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="@dimen/dimen_20dp"
-                    android:background="@color/dark"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edadada Tsdfsads(C)"
-                    android:textColor="@color/dark"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginTop="@dimen/dimen_10dp"
-                    android:textSize="@dimen/dimen_16sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aasdasd Gdaassdd(VC)"
-                    android:textColor="@color/dark"
-                    android:layout_marginLeft="@dimen/dimen_10dp"
-                    android:layout_marginTop="@dimen/dimen_10dp"
-                    android:textSize="@dimen/dimen_16sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.MaterialComponents.CardView.Checkable"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:layout_marginRight="@dimen/dimen_10dp"
-        android:layout_marginLeft="@dimen/dimen_10dp"
-        android:background="@drawable/post"
-        app:cardElevation="@dimen/dimen_6dp">
-        <LinearLayout
+            android:id="@+id/team2Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -205,6 +146,69 @@
         android:background="@drawable/post"
         app:cardElevation="@dimen/dimen_6dp">
         <LinearLayout
+            android:id="@+id/team3Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/myphoto" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_gravity="center"
+                    android:text="Magnum Meghadvas"
+                    android:textSize="@dimen/dimen_20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:background="@color/dark"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edadada Tsdfsads(C)"
+                    android:textColor="@color/dark"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:textSize="@dimen/dimen_16sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aasdasd Gdaassdd(VC)"
+                    android:textColor="@color/dark"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:textSize="@dimen/dimen_16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView.Checkable"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:background="@drawable/post"
+        app:cardElevation="@dimen/dimen_6dp">
+        <LinearLayout
+            android:id="@+id/team4Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

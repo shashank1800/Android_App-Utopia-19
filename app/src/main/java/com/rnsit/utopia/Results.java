@@ -31,6 +31,8 @@ import com.rnsit.utopia.Adapters.TechViewAdapter;
 
 import java.util.ArrayList;
 
+import static com.rnsit.utopia.MainActivity.PostViewObject;
+
 public class Results extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     public BottomNavigationView bottomNavigationView;
@@ -57,6 +59,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     private ArrayList<CultObject> cults;
     private ArrayList<LitObject> lits;
     private ArrayList<TechObject> techs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,13 +176,25 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
             case R.id.bot_cultural:ClearAdapter();
                 ClearVisibility();
                 mRecyclerCult.setVisibility(View.VISIBLE);
-                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
-                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
-                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
-                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
-                cults.add(new CultObject("Event Name","First Name","Second Name","1","2"));
-                mCultViewAdapter.notifyDataSetChanged();
+
+                db = FirebaseFirestore.getInstance();
+                query = db.collection("ResultCultural")
+                        .orderBy("eventName", Query.Direction.ASCENDING)
+                        .limit(TOTAL_ITEM_EACH_LOAD);
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                CultObject mCultObject = document.toObject(CultObject.class);
+                                cults.add(mCultObject);
+                            }
+                            mCultViewAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
                 break;
+
             case R.id.bot_literature:ClearAdapter();
                 ClearVisibility();
                 mRecyclerLit.setVisibility(View.VISIBLE);
