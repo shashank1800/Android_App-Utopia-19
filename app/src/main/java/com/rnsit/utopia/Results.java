@@ -31,8 +31,6 @@ import com.rnsit.utopia.Adapters.TechViewAdapter;
 
 import java.util.ArrayList;
 
-import static com.rnsit.utopia.MainActivity.PostViewObject;
-
 public class Results extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     public BottomNavigationView bottomNavigationView;
@@ -133,52 +131,53 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
         int id = item.getItemId();
         switch (id){
-            case R.id.bot_sports:ClearAdapter();
+            case R.id.bot_sports:
+                ClearAdapter();
                 ClearVisibility();
-                mRecyclerSports.setVisibility(View.VISIBLE);
-                sports.add(new SportsObject("Event Name","Finals","Team Name1","teamName2","Team Name1"));
-                sports.add(new SportsObject("Event Name","Semi Finals","teamName1","teamName2","Team Name1"));
-                sports.add(new SportsObject("Event Name","Finals","teamName1","teamName2","Team Name1"));
-                sports.add(new SportsObject("Event Name","","teamName1","teamName2","Team Name1"));
-                sports.add(new SportsObject("Event Name","","teamName1","teamName2","Team Name1"));
-                mSportsViewAdapter.notifyDataSetChanged();
-                /*mPostViewAdapter = new PostViewAdapter(this,PostViewObject);
-                mRecyclerViewPost.setAdapter(mPostViewAdapter);
-                mPostViewAdapter.clear();
                 db = FirebaseFirestore.getInstance();
-                query = db.collection("Posts")
-                        .orderBy("timeStamp", Query.Direction.DESCENDING)
+                query = db.collection("Sports")
                         .limit(TOTAL_ITEM_EACH_LOAD);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                PostViewObject mPostView = document.toObject(PostViewObject.class);
-                                PostViewObject.add(mPostView);
+                                SportsObject  mSportsObject= document.toObject(SportsObject.class);
+                                sports.add(mSportsObject);
                             }
-                            mPostViewAdapter.notifyDataSetChanged();
+                            mSportsViewAdapter.notifyDataSetChanged();
                         }
                     }
-                });*/
+                });
                 break;
-            case R.id.bot_fun: ClearAdapter();
+            case R.id.bot_fun:
+                ClearAdapter();
                 ClearVisibility();
-                mRecyclerFun.setVisibility(View.VISIBLE);
-                funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
-                funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
-                funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
-                funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
-                funs.add(new FunObject("Event Name","First Name","Second Name","1","2"));
-                mFunViewAdapter.notifyDataSetChanged();
+                db = FirebaseFirestore.getInstance();
+                query = db.collection("Fun")
+                        .orderBy("eventName", Query.Direction.ASCENDING)
+                        .limit(TOTAL_ITEM_EACH_LOAD);
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                FunObject mFunObject = document.toObject(FunObject.class);
+                                funs.add(mFunObject);
+                            }
+                            mFunViewAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
                 break;
 
-            case R.id.bot_cultural:ClearAdapter();
+            case R.id.bot_cultural:
+                ClearAdapter();
                 ClearVisibility();
                 mRecyclerCult.setVisibility(View.VISIBLE);
 
                 db = FirebaseFirestore.getInstance();
-                query = db.collection("ResultCultural")
+                query = db.collection("Cultural")
                         .orderBy("eventName", Query.Direction.ASCENDING)
                         .limit(TOTAL_ITEM_EACH_LOAD);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -195,25 +194,45 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 });
                 break;
 
-            case R.id.bot_literature:ClearAdapter();
+            case R.id.bot_literature:
+                ClearAdapter();
                 ClearVisibility();
-                mRecyclerLit.setVisibility(View.VISIBLE);
-                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
-                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
-                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
-                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
-                lits.add(new LitObject("Event Name","First Name","Second Name","1","2"));
-                mLitViewAdapter.notifyDataSetChanged();
+                db = FirebaseFirestore.getInstance();
+                query = db.collection("Literature")
+                        .orderBy("eventName", Query.Direction.ASCENDING)
+                        .limit(TOTAL_ITEM_EACH_LOAD);
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                LitObject mLitObject = document.toObject(LitObject.class);
+                                lits.add(mLitObject);
+                            }
+                            mLitViewAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
                 break;
-            case R.id.bot_technical:ClearAdapter();
+            case R.id.bot_technical:
+                ClearAdapter();
                 ClearVisibility();
-                mRecyclerTech.setVisibility(View.VISIBLE);
-                techs.add(new TechObject("Event Name","Winner Name","1"));
-                techs.add(new TechObject("Event Name","Winner Name","1"));
-                techs.add(new TechObject("Event Name","Winner Name","1"));
-                techs.add(new TechObject("Event Name","Winner Name","1"));
-                techs.add(new TechObject("Event Name","Winner Name","1"));
-                mTechViewAdapter.notifyDataSetChanged();
+                db = FirebaseFirestore.getInstance();
+                query = db.collection("ResultTechnical")
+                        .orderBy("eventName", Query.Direction.ASCENDING)
+                        .limit(TOTAL_ITEM_EACH_LOAD);
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                TechObject mTechObject = document.toObject(TechObject.class);
+                                techs.add(mTechObject);
+                            }
+                            mTechViewAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
                 break;
         }
         return true;
