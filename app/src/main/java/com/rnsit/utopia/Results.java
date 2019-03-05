@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -134,6 +135,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
             case R.id.bot_sports:
                 ClearAdapter();
                 ClearVisibility();
+                mRecyclerSports.setVisibility(View.VISIBLE);
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Sports")
                         .limit(TOTAL_ITEM_EACH_LOAD);
@@ -153,6 +155,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
             case R.id.bot_fun:
                 ClearAdapter();
                 ClearVisibility();
+                mRecyclerFun.setVisibility(View.VISIBLE);
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Fun")
                         .orderBy("eventName", Query.Direction.ASCENDING)
@@ -197,6 +200,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
             case R.id.bot_literature:
                 ClearAdapter();
                 ClearVisibility();
+                mRecyclerLit.setVisibility(View.VISIBLE);
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Literature")
                         .orderBy("eventName", Query.Direction.ASCENDING)
@@ -217,6 +221,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
             case R.id.bot_technical:
                 ClearAdapter();
                 ClearVisibility();
+                mRecyclerTech.setVisibility(View.VISIBLE);
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("ResultTechnical")
                         .orderBy("eventName", Query.Direction.ASCENDING)

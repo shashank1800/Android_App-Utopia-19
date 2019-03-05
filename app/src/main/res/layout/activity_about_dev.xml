@@ -30,7 +30,8 @@
             <ImageView
                 android:id="@+id/img_profile"
                 android:layout_width="@dimen/dimen_120dp"
-                android:layout_height="@dimen/dimen_120dp"/>
+                android:layout_height="@dimen/dimen_120dp"
+                android:src="@drawable/my_photo"/>
         </LinearLayout>
     </RelativeLayout>
 
@@ -67,7 +68,7 @@
         android:layout_margin="@dimen/dimen_10dp"
         android:textSize="@dimen/dimen_18sp"
         android:textStyle="bold"
-        android:text="Hey I'm an Android Developer. Lolololololololololo\nlolololololololololololo\nlol lolol lollol lololollolololololol"/>
+        android:text="@string/about_developer"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
