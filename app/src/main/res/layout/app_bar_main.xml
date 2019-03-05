@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#2D2D2D">
+    android:background="@color/mainBackground">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,17 +16,16 @@
         android:fitsSystemWindows="true"
         android:minHeight="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:theme="@style/MainActivityTheme">
         <ImageView
-            android:id="@+id/someImage"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/utopia_logo"
             android:layout_gravity="center"
             app:layout_collapseMode="pin" />
-
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_posts"
         android:layout_width="match_parent"

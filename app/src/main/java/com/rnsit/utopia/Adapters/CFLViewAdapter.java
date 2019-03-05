@@ -1,5 +1,6 @@
 package com.rnsit.utopia.Adapters;
-import com.rnsit.utopia.AdapterObjects.FunObject;
+
+import com.rnsit.utopia.AdapterObjects.CFLObject;
 import com.rnsit.utopia.R;
 
 import android.content.Context;
@@ -16,18 +17,18 @@ import java.util.Map;
 import java.util.TreeMap;
 
 
-public class FunViewAdapter extends RecyclerView.Adapter<FunViewAdapter.ViewHolder> {
-    private ArrayList<FunObject> mFun;
+public class CFLViewAdapter extends RecyclerView.Adapter<CFLViewAdapter.ViewHolder> {
+    private ArrayList<CFLObject> mCFLObject;
     private Context context;
 
-    public FunViewAdapter(Context context, ArrayList<FunObject> funs) {
+    public CFLViewAdapter(Context context, ArrayList<CFLObject> cflObjects) {
         this.context = context;
-        mFun= funs;
+        mCFLObject= cflObjects;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView eventName,firstName,secondName,firstTeam,secondTeam;
-        public ImageView teamImage1,teamImage2;;
+        public TextView eventName,firstName,secondName;
+        public ImageView teamImage1,teamImage2;
 
         public ViewHolder(@Nullable View itemView) {
             super(itemView);
@@ -40,37 +41,37 @@ public class FunViewAdapter extends RecyclerView.Adapter<FunViewAdapter.ViewHold
     }
 
     @Override
-    public FunViewAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public CFLViewAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_layout_fun, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_layout_cfl, viewGroup, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(FunViewAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(CFLViewAdapter.ViewHolder viewHolder, int i) {
+
         Map<String,Integer> m = new TreeMap<>();
         m.put("Venu Venus",R.drawable.venus);
         m.put("Eart Earth",R.drawable.earth);
         m.put("Merc Mercury",R.drawable.earth);
         m.put("Mars Mars",R.drawable.mars);
 
-        viewHolder.eventName.setTag(mFun.get(i));
-        viewHolder.eventName.setText(mFun.get(i).getEventName());
-        viewHolder.firstName.setText(mFun.get(i).getFirstName());
-        viewHolder.secondName.setText(mFun.get(i).getSecondName());
-        viewHolder.teamImage1.setImageResource(m.get(mFun.get(i).getFirstTeam()));
-        viewHolder.teamImage2.setImageResource(m.get(mFun.get(i).getSecondTeam()));
+        viewHolder.eventName.setTag(mCFLObject.get(i));
+        viewHolder.eventName.setText(mCFLObject.get(i).getEventName());
+        viewHolder.firstName.setText(mCFLObject.get(i).getFirstName());
+        viewHolder.secondName.setText(mCFLObject.get(i).getSecondName());
+        viewHolder.teamImage1.setImageResource(m.get(mCFLObject.get(i).getFirstTeam()));
+        viewHolder.teamImage2.setImageResource(m.get(mCFLObject.get(i).getSecondTeam()));
 
     }
 
     @Override
     public int getItemCount() {
-        return mFun.size();
+        return mCFLObject.size();
     }
 
     public void clear(){
-        mFun.clear();
+        mCFLObject.clear();
         notifyDataSetChanged();
     }
-
 }

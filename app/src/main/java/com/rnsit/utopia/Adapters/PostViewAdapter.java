@@ -22,9 +22,9 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     private ArrayList<PostViewObject> mPosts;
     private Context context;
 
-    public PostViewAdapter(Context context, ArrayList<PostViewObject> Department) {
+    public PostViewAdapter(Context context, ArrayList<PostViewObject> posts) {
         this.context = context;
-        mPosts = Department;
+        mPosts = posts;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

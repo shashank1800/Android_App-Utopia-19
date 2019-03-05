@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHolder> {
@@ -42,9 +44,15 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(TechViewAdapter.ViewHolder viewHolder, int i) {
+        Map<String,Integer> m = new TreeMap<>();
+        m.put("Venu Venus",R.drawable.venus);
+        m.put("Eart Earth",R.drawable.earth);
+        m.put("Merc Mercury",R.drawable.earth);
+        m.put("Mars Mars",R.drawable.mars);
         viewHolder.eventName.setTag(mTech.get(i));
         viewHolder.eventName.setText(mTech.get(i).getEventName());
         viewHolder.partName.setText(mTech.get(i).getPartName());
+        //viewHolder.teamImage1.setImageResource(m.get(mTech.get(i).getTeamName()));
     }
 
     @Override

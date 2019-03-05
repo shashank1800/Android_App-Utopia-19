@@ -12,7 +12,7 @@
         android:textColor="@color/postDetailColor"
         android:textStyle="bold"
         android:textSize="@dimen/dimen_22sp"
-        android:fontFamily="@font/customsylefont"/>
+        android:fontFamily="@font/opensans"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,14 +18,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.rnsit.utopia.AdapterObjects.CultObject;
-import com.rnsit.utopia.AdapterObjects.FunObject;
-import com.rnsit.utopia.AdapterObjects.LitObject;
+import com.rnsit.utopia.AdapterObjects.CFLObject;
 import com.rnsit.utopia.AdapterObjects.SportsObject;
 import com.rnsit.utopia.AdapterObjects.TechObject;
-import com.rnsit.utopia.Adapters.CultViewAdapter;
-import com.rnsit.utopia.Adapters.FunViewAdapter;
-import com.rnsit.utopia.Adapters.LitViewAdapter;
+import com.rnsit.utopia.Adapters.CFLViewAdapter;
 import com.rnsit.utopia.Adapters.SportsViewAdapter;
 import com.rnsit.utopia.Adapters.TechViewAdapter;
 
@@ -44,20 +39,21 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     public static DocumentSnapshot lastVisible;
 
     private RecyclerView mRecyclerFun,mRecyclerSports,mRecyclerCult,mRecyclerTech,mRecyclerLit;
-
-    private FunViewAdapter mFunViewAdapter;
-    private SportsViewAdapter mSportsViewAdapter;
+    /*private FunViewAdapter mFunViewAdapter;
     private CultViewAdapter mCultViewAdapter;
-    private LitViewAdapter mLitViewAdapter;
+    private LitViewAdapter mLitViewAdapter;*/
+    private SportsViewAdapter mSportsViewAdapter;
     private TechViewAdapter mTechViewAdapter;
+    private CFLViewAdapter mCFLViewAdapter;
 
     private LinearLayoutManager linearLayoutManager1,linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5;
 
-    private ArrayList<FunObject> funs;
-    private ArrayList<SportsObject> sports;
+    /*private ArrayList<FunObject> funs;
     private ArrayList<CultObject> cults;
-    private ArrayList<LitObject> lits;
+    private ArrayList<LitObject> lits;*/
+    private ArrayList<SportsObject> sports;
     private ArrayList<TechObject> techs;
+    private ArrayList<CFLObject> cflObjects;
 
 
     @Override
@@ -66,11 +62,12 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         setContentView(R.layout.activity_results);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        funs = new ArrayList<FunObject>();
-        sports = new ArrayList<SportsObject>();
+        /*funs = new ArrayList<FunObject>();
         cults = new ArrayList<CultObject>();
-        lits = new ArrayList<LitObject>();
+        lits = new ArrayList<LitObject>();*/
+        sports = new ArrayList<SportsObject>();
         techs = new ArrayList<TechObject>();
+        cflObjects = new ArrayList<CFLObject>();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -111,16 +108,17 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerLit.setLayoutManager(linearLayoutManager4);
         mRecyclerTech.setLayoutManager(linearLayoutManager5);
 
-        mFunViewAdapter = new FunViewAdapter(context,funs);
+        /*mFunViewAdapter = new FunViewAdapter(context,funs);
         mCultViewAdapter = new CultViewAdapter(context,cults);
+        mLitViewAdapter = new LitViewAdapter(context,lits);*/
         mSportsViewAdapter = new SportsViewAdapter(context,sports);
-        mLitViewAdapter = new LitViewAdapter(context,lits);
         mTechViewAdapter = new TechViewAdapter(context,techs);
+        mCFLViewAdapter = new CFLViewAdapter(context,cflObjects);
 
-        mRecyclerFun.setAdapter(mFunViewAdapter);
-        mRecyclerCult.setAdapter(mCultViewAdapter);
+        mRecyclerFun.setAdapter(mCFLViewAdapter);
+        mRecyclerCult.setAdapter(mCFLViewAdapter);
         mRecyclerSports.setAdapter(mSportsViewAdapter);
-        mRecyclerLit.setAdapter(mLitViewAdapter);
+        mRecyclerLit.setAdapter(mCFLViewAdapter);
         mRecyclerTech.setAdapter(mTechViewAdapter);
 
         bottomNavigationView.setSelectedItemId(R.id.bot_sports);
@@ -136,6 +134,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 ClearAdapter();
                 ClearVisibility();
                 mRecyclerSports.setVisibility(View.VISIBLE);
+
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Sports")
                         .limit(TOTAL_ITEM_EACH_LOAD);
@@ -158,17 +157,16 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 mRecyclerFun.setVisibility(View.VISIBLE);
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Fun")
-                        .orderBy("eventName", Query.Direction.ASCENDING)
                         .limit(TOTAL_ITEM_EACH_LOAD);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                FunObject mFunObject = document.toObject(FunObject.class);
-                                funs.add(mFunObject);
+                                CFLObject mCFLObject = document.toObject(CFLObject.class);
+                                cflObjects.add(mCFLObject);
                             }
-                            mFunViewAdapter.notifyDataSetChanged();
+                            mCFLViewAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -181,17 +179,16 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Cultural")
-                        .orderBy("eventName", Query.Direction.ASCENDING)
                         .limit(TOTAL_ITEM_EACH_LOAD);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                CultObject mCultObject = document.toObject(CultObject.class);
-                                cults.add(mCultObject);
+                                CFLObject mCFLObject = document.toObject(CFLObject.class);
+                                cflObjects.add(mCFLObject);
                             }
-                            mCultViewAdapter.notifyDataSetChanged();
+                            mCFLViewAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -201,19 +198,19 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 ClearAdapter();
                 ClearVisibility();
                 mRecyclerLit.setVisibility(View.VISIBLE);
+
                 db = FirebaseFirestore.getInstance();
                 query = db.collection("Literature")
-                        .orderBy("eventName", Query.Direction.ASCENDING)
                         .limit(TOTAL_ITEM_EACH_LOAD);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-                                LitObject mLitObject = document.toObject(LitObject.class);
-                                lits.add(mLitObject);
+                                CFLObject mCFLObject = document.toObject(CFLObject.class);
+                                cflObjects.add(mCFLObject);
                             }
-                            mLitViewAdapter.notifyDataSetChanged();
+                            mCFLViewAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -222,9 +219,9 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 ClearAdapter();
                 ClearVisibility();
                 mRecyclerTech.setVisibility(View.VISIBLE);
+
                 db = FirebaseFirestore.getInstance();
-                query = db.collection("ResultTechnical")
-                        .orderBy("eventName", Query.Direction.ASCENDING)
+                query = db.collection("Technical")
                         .limit(TOTAL_ITEM_EACH_LOAD);
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -252,10 +249,11 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     }
 
     private void ClearAdapter() {
-        mFunViewAdapter.clear();
+        /*mFunViewAdapter.clear();
         mCultViewAdapter.clear();
+        mLitViewAdapter.clear();*/
         mSportsViewAdapter.clear();
-        mLitViewAdapter.clear();
         mTechViewAdapter.clear();
+        mCFLViewAdapter.clear();
     }
 }

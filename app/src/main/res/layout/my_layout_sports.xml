@@ -14,7 +14,7 @@
         android:textColor="@color/postDetailColor"
         android:textStyle="bold"
         android:textSize="@dimen/dimen_22sp"
-        android:fontFamily="@font/customsylefont"/>
+        android:fontFamily="@font/opensans"/>
     <TextView
         android:id="@+id/subHead"
         android:layout_width="wrap_content"
@@ -35,9 +35,10 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <ImageView
+                android:id="@+id/teamImage1"
                 android:layout_width="@dimen/dimen_50dp"
                 android:layout_height="@dimen/dimen_50dp"
-                android:layout_marginRight="@dimen/dimen_30dp"
+                android:layout_marginEnd="@dimen/dimen_30dp"
                 android:src="@drawable/ic_launcher_background"
                 android:layout_gravity="end"/>
         </LinearLayout>
@@ -54,6 +55,7 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <ImageView
+                android:id="@+id/teamImage2"
                 android:layout_width="@dimen/dimen_50dp"
                 android:layout_height="@dimen/dimen_50dp"
                 android:layout_marginLeft="@dimen/dimen_30dp"
