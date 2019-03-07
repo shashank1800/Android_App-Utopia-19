@@ -12,11 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
-    private Switch drawerSwitch;
     private Context context;
 
     private NavigationView navigationView;
@@ -43,16 +39,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RecyclerView mRecyclerViewPost;
     public static PostViewAdapter mPostViewAdapter;
     private LinearLayoutManager linearLayoutManager;
-    public static ArrayList<com.rnsit.utopia.AdapterObjects.PostViewObject> PostViewObject;
+    public static ArrayList<PostViewObject> PostViewObject;
     private FirebaseFirestore db;
     private Query query;
 
     private static final int TOTAL_ITEM_EACH_LOAD = 7;
     public static DocumentSnapshot lastVisible;
-    public static SharedPreferences sharedPreferences;
-    public static SharedPreferences.Editor editor;
 
-    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mPostViewAdapter = new PostViewAdapter(this, PostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
 
-        sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preference_key), Context.MODE_PRIVATE);
+        /*sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preference_key), Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         drawerSwitch = (Switch) navigationView.getMenu().findItem(R.id.saveData).getActionView();
@@ -99,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String is = sharedPreferences.getString("switch","");
             if(is.matches("0")) drawerSwitch.setChecked(false);
             else drawerSwitch.setChecked(true);
-        }
+        }*/
 
         db = FirebaseFirestore.getInstance();
         query = db.collection("Posts")
@@ -109,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        PostViewObject mPostView = document.toObject(PostViewObject.class);
+                    for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                        PostViewObject mPostView = documentSnapshot.toObject(PostViewObject.class);
                         PostViewObject.add(mPostView);
                     }
                     mPostViewAdapter.notifyDataSetChanged();

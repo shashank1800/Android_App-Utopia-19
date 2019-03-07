@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#F00C121F</color>
     <color name="mainBackground">#455A64</color>
     <color name="cardColor">#263238</color>
-    <color name="colorAccent" >#D81B60</color>
+    <color name="cardTextColor">#55250f</color>
+    <color name="colorAccent" >#cfc46a</color>
     <color name="white">#FFF</color>
     <color name="transparentWhite">#C0C0C0</color>
     <color name="postDetailColor">#727272</color>

@@ -2,21 +2,25 @@ package com.rnsit.utopia;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class feedback extends AppCompatActivity {
     private EditText feedback_text;
     private Button submit;
     private Context context;
-    private DatabaseReference mDatabaseRef;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +36,23 @@ public class feedback extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(feedback_text.getText().toString().compareTo("")==0)
-                    Toast.makeText(context,"Please enter Feedback text",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.linearLayout), "Please enter Feedback text", Snackbar.LENGTH_SHORT).show();
                 else {
-                    Toast.makeText(context,"Thank you for your Feedback",Toast.LENGTH_SHORT).show();
-                    String value = feedback_text.getText().toString();
-                    mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-                    mDatabaseRef.child("Feedback").push().setValue(value);
+                    Snackbar.make(findViewById(R.id.linearLayout), "Thanks for your Feedback!", Snackbar.LENGTH_SHORT).show();
+
+                    String uniqueID = UUID.randomUUID().toString();
+                    String feedbackText = feedback_text.getText().toString();
+
+                    Map<String, Object> feedback = new HashMap<>();
+                    feedback.put("feedbackText", feedbackText);
+
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("Feedback").document(uniqueID).set(feedback);
+
                     feedback_text.setText("");
+
+                    InputMethodManager keyboard = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    keyboard.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         });

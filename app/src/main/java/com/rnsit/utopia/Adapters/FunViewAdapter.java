@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-
 public class FunViewAdapter extends RecyclerView.Adapter<FunViewAdapter.ViewHolder> {
     private ArrayList<FunObject> mFun;
     private Context context;

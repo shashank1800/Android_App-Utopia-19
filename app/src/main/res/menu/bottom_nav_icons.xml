@@ -11,7 +11,7 @@
         android:title="Cultural" />
     <item
         android:id="@+id/bot_sports"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/nav_icon_event"
         android:title="Sports" />
     <item
         android:id="@+id/bot_literature"

@@ -1,8 +1,6 @@
 package com.rnsit.utopia.Adapters;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.AdapterObjects.PostViewObject;
 import com.rnsit.utopia.R;
 
@@ -48,22 +46,14 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(PostViewAdapter.ViewHolder viewHolder, int i) {
-        int x=700,y=400;
+        //int x=900,y=1000;
         String time = String.valueOf(mPosts.get(i).getTimeStamp());
         String hr = time.substring(8,10);
         String min = time.substring(10,12);
 
-        if(!MainActivity.sharedPreferences.getString("switch","").matches("")){
-            String is = MainActivity.sharedPreferences.getString("switch","");
-            if(is.matches("0")){
-                x = 900;
-                y = 1000;
-            }
-        }
-
-        RequestOptions myOptions = new RequestOptions()
+        /*RequestOptions myOptions = new RequestOptions()
                 .override(x, y)
-                .fitCenter();
+                .fitCenter();*/
 
         if(Integer.parseInt(hr)>12){
             int h = Integer.parseInt(hr)-12;
@@ -74,7 +64,10 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
         viewHolder.postDetail.setTag(mPosts.get(i));
         viewHolder.postDetail.setText(mPosts.get(i).getPostDetail());
-        Glide.with(context).load(mPosts.get(i).getImagePostURL()).apply(myOptions).into(viewHolder.imagePostIV);
+        Glide.with(context)
+                .load(mPosts.get(i).getImagePostURL())
+                //.apply(myOptions)
+                .into(viewHolder.imagePostIV);
         viewHolder.timeStamp.setText(time);
     }
 

@@ -1,82 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white">
-    <TextView
-        android:id="@+id/eventName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="@dimen/dimen_5dp"
-        android:textColor="@color/postDetailColor"
-        android:textStyle="bold"
-        android:textSize="@dimen/dimen_22sp"
-        android:fontFamily="@font/opensans"/>
-    <TextView
-        android:id="@+id/subHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_5dp"
-        android:layout_weight="1"
-        android:textColor="@color/postDetailColor"
-        android:textStyle="italic"
-        android:textSize="@dimen/dimen_16sp"/>
+    android:layout_margin="2.5dp"
+    app:cardBackgroundColor="@color/cardColor">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="@dimen/dimen_0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/teamImage1"
-                android:layout_width="@dimen/dimen_50dp"
-                android:layout_height="@dimen/dimen_50dp"
-                android:layout_marginEnd="@dimen/dimen_30dp"
-                android:src="@drawable/ic_launcher_background"
-                android:layout_gravity="end"/>
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/eventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/dimen_5dp"
+                android:textColor="@color/cardTextColor"
+                android:textStyle="bold"
+                android:textSize="@dimen/dimen_22sp"
+                android:fontFamily="@font/opensans"/>
+            <TextView
+                android:id="@+id/subHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_weight="1"
+                android:textColor="@color/cardTextColor"
+                android:textStyle="italic"
+                android:textSize="@dimen/dimen_16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/teamImage1"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:layout_marginEnd="@dimen/dimen_30dp"
+                    android:layout_gravity="end"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="V/S"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+            <LinearLayout
+                android:layout_width="@dimen/dimen_0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/teamImage2"
+                    android:layout_width="@dimen/dimen_50dp"
+                    android:layout_height="@dimen/dimen_50dp"
+                    android:layout_marginLeft="@dimen/dimen_30dp"
+                    android:layout_gravity="start"/>
+            </LinearLayout>
         </LinearLayout>
         <TextView
+            android:id="@+id/winnerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="V/S"
-            android:textSize="@dimen/dimen_20sp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
-        <LinearLayout
-            android:layout_width="@dimen/dimen_0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/teamImage2"
-                android:layout_width="@dimen/dimen_50dp"
-                android:layout_height="@dimen/dimen_50dp"
-                android:layout_marginLeft="@dimen/dimen_30dp"
-                android:src="@drawable/ic_launcher_background"
-                android:layout_gravity="start"/>
-        </LinearLayout>
+            android:textSize="@dimen/dimen_16sp"
+            android:fontFamily="sans-serif"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/winnerName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10dp"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:text="Team Name Won"
-        android:layout_gravity="center"
-        android:textColor="@color/postDetailColor"
-        android:textStyle="bold"
-        android:textSize="@dimen/dimen_16sp"
-        android:fontFamily="sans-serif"/>
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/dark"
-        android:layout_height="1dp"/>
-</LinearLayout>
+</androidx.cardview.widget.CardView>
