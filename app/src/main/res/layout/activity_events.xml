@@ -1,60 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground"
+    android:orientation="vertical"
     tools:context=".Events">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView.Checkable"
+        android:id="@+id/totalEvents"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView.Checkable"
-            android:id="@+id/totalEvents"
-            android:clickable="true"
-            android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        app:cardBackgroundColor="@color/cardColor"
+        app:cardElevation="@dimen/dimen_2dp">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Total Events"
+            android:textStyle="bold"
+            android:textSize="@dimen/dimen_20sp"
+            android:layout_margin="@dimen/dimen_20dp"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/dimen_10dp"
-            app:cardElevation="@dimen/dimen_2dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Events"
-                android:textStyle="bold"
-                android:textSize="@dimen/dimen_20sp"
-                android:layout_margin="@dimen/dimen_20dp"
-                android:layout_gravity="center"
-                android:textColor="@color/dark"/>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView.Checkable"
-            android:id="@+id/upcomingEvents"
-            android:clickable="true"
-            android:layout_width="match_parent"
+            android:textColor="@color/colorAccent"/>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView.Checkable"
+        android:id="@+id/upcomingEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dimen_20dp"
+        android:layout_marginLeft="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        app:cardBackgroundColor="@color/cardColor"
+        app:cardElevation="@dimen/dimen_2dp">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_10dp"
-            app:cardElevation="@dimen/dimen_2dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upcoming Events"
-                android:textStyle="bold"
-                android:textSize="@dimen/dimen_20sp"
-                android:layout_margin="@dimen/dimen_20dp"
-                android:layout_gravity="center"
-                android:textColor="@color/dark"/>
-        </com.google.android.material.card.MaterialCardView>
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:text="Upcoming Events"
+            android:textStyle="bold"
+            android:textSize="@dimen/dimen_20sp"
+            android:layout_margin="@dimen/dimen_20dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorAccent"/>
+    </com.google.android.material.card.MaterialCardView>
 
-</RelativeLayout>
+</LinearLayout>

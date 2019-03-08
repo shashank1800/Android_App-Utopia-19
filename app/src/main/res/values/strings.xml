@@ -4,5 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="shared_preference_key">com.rnsit.utopia</string>
-    <string name="about_developer">Hey I\'m an Android Developer. Lolololololol looloololololololoooloo ololoolo,lololoilo9lo9olololololololololololololol</string>
+    <string name="dev_description">Hey I\'m an Android Developer. Lololol ololol looloololol olololo ooloo ololoolo,lol oloilo 9lo 9ololol ololol olololo lol ololol</string>
+    <string name="dev_name">Shashank Bhat</string>
+    <string name="dev_branch">CSE</string>
 </resources>

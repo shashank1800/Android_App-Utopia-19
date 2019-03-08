@@ -7,11 +7,6 @@
     <color name="cardTextColor">#55250f</color>
     <color name="colorAccent" >#cfc46a</color>
     <color name="white">#FFF</color>
-    <color name="transparentWhite">#C0C0C0</color>
-    <color name="postDetailColor">#727272</color>
-    <color name="dark">#0d1322</color>
     <color name="black">#000</color>
-    <color name="textColor">#2D2D2D</color>
-    <color name="H1color">#283593</color>
 
 </resources>

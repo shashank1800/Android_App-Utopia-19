@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark"
+    android:background="@color/mainBackground"
     android:id="@+id/linearLayout"
     tools:context=".AboutApp">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10dp"
-        app:cardBackgroundColor="@color/transparentWhite"
+        app:cardBackgroundColor="@color/cardColor"
         app:cardElevation="8dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,13 +25,16 @@
                 android:minHeight="100dp"
                 android:inputType="textMultiLine"
                 android:layout_margin="10dp"
-                android:hint="Feedback..."/>
+                android:hint="Feedback..."
+                android:textColorHint="@color/colorAccent"
+                android:textColor="@color/colorAccent"/>
             <Button
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Submit"/>
+                android:text="Submit"
+                android:textColor="@color/colorAccent"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

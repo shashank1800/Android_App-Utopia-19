@@ -26,7 +26,7 @@ public class SportsViewAdapter extends RecyclerView.Adapter<SportsViewAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView eventName,subHead,teamName1,teamName2,winnerName;
+        public TextView eventName,subHead,winnerName;
         public ImageView teamImage1,teamImage2;
 
         public ViewHolder(@Nullable View itemView) {

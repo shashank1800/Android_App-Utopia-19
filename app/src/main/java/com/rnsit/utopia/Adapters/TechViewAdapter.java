@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Map;
@@ -26,12 +27,14 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView eventName,partName,teamName;
+        public TextView eventName,partName;
+        public ImageView teamImage1;
 
         public ViewHolder(@Nullable View itemView) {
             super(itemView);
             eventName = (TextView) itemView.findViewById(R.id.eventName);
             partName = (TextView) itemView.findViewById(R.id.partName);
+            teamImage1 = (ImageView)itemView.findViewById(R.id.teamImage1);
         }
     }
 
@@ -49,10 +52,11 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
         m.put("Eart Earth",R.drawable.earth);
         m.put("Merc Mercury",R.drawable.earth);
         m.put("Mars Mars",R.drawable.mars);
+
         viewHolder.eventName.setTag(mTech.get(i));
         viewHolder.eventName.setText(mTech.get(i).getEventName());
         viewHolder.partName.setText(mTech.get(i).getPartName());
-        //viewHolder.teamImage1.setImageResource(m.get(mTech.get(i).getTeamName()));
+        viewHolder.teamImage1.setImageResource(m.get(mTech.get(i).getTeamName()));
     }
 
     @Override

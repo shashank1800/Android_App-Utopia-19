@@ -1,6 +1,7 @@
 package com.rnsit.utopia.Adapters;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.rnsit.utopia.AdapterObjects.PostViewObject;
 import com.rnsit.utopia.R;
 
@@ -46,14 +47,14 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(PostViewAdapter.ViewHolder viewHolder, int i) {
-        //int x=900,y=1000;
+
         String time = String.valueOf(mPosts.get(i).getTimeStamp());
         String hr = time.substring(8,10);
         String min = time.substring(10,12);
 
-        /*RequestOptions myOptions = new RequestOptions()
-                .override(x, y)
-                .fitCenter();*/
+        RequestOptions myOptions = new RequestOptions()
+                .override(800,450)
+                .fitCenter();
 
         if(Integer.parseInt(hr)>12){
             int h = Integer.parseInt(hr)-12;
@@ -66,7 +67,7 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         viewHolder.postDetail.setText(mPosts.get(i).getPostDetail());
         Glide.with(context)
                 .load(mPosts.get(i).getImagePostURL())
-                //.apply(myOptions)
+                .apply(myOptions)
                 .into(viewHolder.imagePostIV);
         viewHolder.timeStamp.setText(time);
     }

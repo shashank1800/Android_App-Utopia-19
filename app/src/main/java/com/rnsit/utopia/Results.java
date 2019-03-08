@@ -39,18 +39,12 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     public static DocumentSnapshot lastVisible;
 
     private RecyclerView mRecyclerFun,mRecyclerSports,mRecyclerCult,mRecyclerTech,mRecyclerLit;
-    /*private FunViewAdapter mFunViewAdapter;
-    private CultViewAdapter mCultViewAdapter;
-    private LitViewAdapter mLitViewAdapter;*/
     private SportsViewAdapter mSportsViewAdapter;
     private TechViewAdapter mTechViewAdapter;
     private CFLViewAdapter mCFLViewAdapter;
 
     private LinearLayoutManager linearLayoutManager1,linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5;
 
-    /*private ArrayList<FunObject> funs;
-    private ArrayList<CultObject> cults;
-    private ArrayList<LitObject> lits;*/
     private ArrayList<SportsObject> sports;
     private ArrayList<TechObject> techs;
     private ArrayList<CFLObject> cflObjects;
@@ -62,9 +56,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         setContentView(R.layout.activity_results);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*funs = new ArrayList<FunObject>();
-        cults = new ArrayList<CultObject>();
-        lits = new ArrayList<LitObject>();*/
+        context = this;
+
         sports = new ArrayList<SportsObject>();
         techs = new ArrayList<TechObject>();
         cflObjects = new ArrayList<CFLObject>();
@@ -108,9 +101,6 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerLit.setLayoutManager(linearLayoutManager4);
         mRecyclerTech.setLayoutManager(linearLayoutManager5);
 
-        /*mFunViewAdapter = new FunViewAdapter(context,funs);
-        mCultViewAdapter = new CultViewAdapter(context,cults);
-        mLitViewAdapter = new LitViewAdapter(context,lits);*/
         mSportsViewAdapter = new SportsViewAdapter(context,sports);
         mTechViewAdapter = new TechViewAdapter(context,techs);
         mCFLViewAdapter = new CFLViewAdapter(context,cflObjects);
@@ -122,12 +112,10 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerTech.setAdapter(mTechViewAdapter);
 
         bottomNavigationView.setSelectedItemId(R.id.bot_sports);
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
         int id = item.getItemId();
         switch (id){
             case R.id.bot_sports:
@@ -141,6 +129,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        sports.clear();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
                                 SportsObject  mSportsObject= document.toObject(SportsObject.class);
@@ -150,6 +139,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                         }
                     }
                 });
+
                 break;
             case R.id.bot_fun:
                 ClearAdapter();
@@ -161,6 +151,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        cflObjects.clear();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
@@ -183,6 +174,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        cflObjects.clear();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
@@ -205,6 +197,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        cflObjects.clear();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
@@ -226,6 +219,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        techs.clear();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
                                 TechObject mTechObject = document.toObject(TechObject.class);
@@ -249,9 +243,6 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     }
 
     private void ClearAdapter() {
-        /*mFunViewAdapter.clear();
-        mCultViewAdapter.clear();
-        mLitViewAdapter.clear();*/
         mSportsViewAdapter.clear();
         mTechViewAdapter.clear();
         mCFLViewAdapter.clear();

@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseFirestore db;
     private Query query;
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 7;
+    private static final int TOTAL_ITEM_EACH_LOAD = 6;
     public static DocumentSnapshot lastVisible;
 
     @Override
@@ -72,27 +71,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecyclerViewPost.setLayoutManager(linearLayoutManager);
         mPostViewAdapter = new PostViewAdapter(this, PostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
-
-        /*sharedPreferences = this.getSharedPreferences(getString(R.string.shared_preference_key), Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        drawerSwitch = (Switch) navigationView.getMenu().findItem(R.id.saveData).getActionView();
-        drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    editor.putString("switch","1").apply();
-                }
-                else
-                    editor.putString("switch","0").apply();
-            }
-        });
-
-        if(!sharedPreferences.getString("switch","").matches("")){
-            String is = sharedPreferences.getString("switch","");
-            if(is.matches("0")) drawerSwitch.setChecked(false);
-            else drawerSwitch.setChecked(true);
-        }*/
 
         db = FirebaseFirestore.getInstance();
         query = db.collection("Posts")
@@ -128,42 +106,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.nav_teams) {
-            Intent intent = new Intent(context, Teams.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_events) {
-            Intent intent = new Intent(context, Events.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_results) {
-            Intent intent = new Intent(context, Results.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_contact) {
-            Intent intent = new Intent(context, Contact.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_about_utopia) {
-            Intent intent = new Intent(context, AboutApp.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_feedback_text) {
-            Intent intent = new Intent(context, feedback.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.nav_shareapp) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_SEND);
-            intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!");
-            intent.setType("text/plain");
-            startActivity(intent);
-        } else if (id == R.id.nav_aboutdev) {
-            Intent intent = new Intent(context, AboutDev.class);
-            startActivity(intent);
-            return true;
-        }
+        switch (id){
+            case R.id.nav_teams:
+                Intent intent = new Intent(context, Teams.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_events:
+                intent = new Intent(context, Events.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_results:
+                intent = new Intent(context, Results.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_contact:
+                intent = new Intent(context, Contact.class);
+                startActivity(intent);
+                break;
 
+            case R.id.nav_about_utopia:
+                intent = new Intent(context, AboutApp.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_feedback_text:
+                intent = new Intent(context, feedback.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_shareapp:
+                intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!");
+                intent.setType("text/plain");
+                startActivity(intent);
+                break;
+            case R.id.nav_aboutdev:
+                intent = new Intent(context, AboutDev.class);
+                startActivity(intent);
+                break;
+        }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

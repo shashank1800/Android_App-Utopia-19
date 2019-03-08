@@ -56,7 +56,6 @@
                     android:id="@+id/teamImage1"
                     android:layout_width="@dimen/dimen_50dp"
                     android:layout_height="@dimen/dimen_50dp"
-                    android:src="@drawable/ic_launcher_background"
                     android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_marginTop="@dimen/dimen_5dp"
                     android:layout_marginBottom="@dimen/dimen_5dp"/>
@@ -91,7 +90,6 @@
                     android:id="@+id/teamImage2"
                     android:layout_width="@dimen/dimen_50dp"
                     android:layout_height="@dimen/dimen_50dp"
-                    android:src="@drawable/ic_launcher_background"
                     android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_marginTop="@dimen/dimen_5dp"
                     android:layout_marginBottom="@dimen/dimen_5dp"/>

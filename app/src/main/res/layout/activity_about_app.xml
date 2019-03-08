@@ -7,9 +7,4 @@
     android:background="@color/mainBackground"
     tools:context=".AboutApp">
 
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         />
 </RelativeLayout>
