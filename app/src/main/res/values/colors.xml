@@ -8,4 +8,5 @@
     <color name="colorAccent" >#cfc46a</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+    <color name="shimmer_color">#C7C7C7</color>
 </resources>

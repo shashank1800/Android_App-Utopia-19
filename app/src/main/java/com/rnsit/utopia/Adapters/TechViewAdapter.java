@@ -50,7 +50,7 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
         Map<String,Integer> m = new TreeMap<>();
         m.put("Venu Venus",R.drawable.venus);
         m.put("Eart Earth",R.drawable.earth);
-        m.put("Merc Mercury",R.drawable.earth);
+        m.put("Merc Mercury",R.drawable.mercury);
         m.put("Mars Mars",R.drawable.mars);
 
         viewHolder.eventName.setTag(mTech.get(i));

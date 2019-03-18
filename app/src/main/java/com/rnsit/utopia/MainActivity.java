@@ -13,7 +13,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -22,8 +24,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.PostViewObject;
-import com.rnsit.utopia.Adapters.EndlessRecyclerOnScrollListener;
+import com.rnsit.utopia.AdapterObjects.RecentPostObject;
+import com.rnsit.utopia.EndlessRecycler.EndlessRecyclerOnScrollListener;
 import com.rnsit.utopia.Adapters.PostViewAdapter;
+import com.rnsit.utopia.Adapters.RecentPostViewAdapter;
 
 import java.util.ArrayList;
 
@@ -32,18 +36,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
     private Context context;
-
     private NavigationView navigationView;
 
-    private RecyclerView mRecyclerViewPost;
+    private RecyclerView mRecyclerViewPost,mRecyclerViewRecentPost;
     public static PostViewAdapter mPostViewAdapter;
-    private LinearLayoutManager linearLayoutManager;
-    public static ArrayList<PostViewObject> PostViewObject;
+    private RecentPostViewAdapter mRecentPostViewAdapter;
+    private LinearLayoutManager linearLayoutManager1,linearLayoutManager2;
+    public static ArrayList<PostViewObject> mPostViewObject;
+    private ArrayList<RecentPostObject> mRecentPostObject;
+
     private FirebaseFirestore db;
     private Query query;
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 6;
+    private static final int TOTAL_ITEM_EACH_LOAD = 4;
     public static DocumentSnapshot lastVisible;
+
+    private ShimmerFrameLayout mShimmerViewContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,17 +67,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        PostViewObject = new ArrayList<PostViewObject>();
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
+        mShimmerViewContainer.startShimmer();
+
+        mRecentPostObject = new ArrayList<RecentPostObject>();
+        mPostViewObject = new ArrayList<PostViewObject>();
+
+        mRecyclerViewRecentPost = (RecyclerView) findViewById(R.id.main_recent_post);
         mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
-        mRecyclerViewPost.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(context);
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        mRecyclerViewPost.setLayoutManager(linearLayoutManager);
-        mPostViewAdapter = new PostViewAdapter(this, PostViewObject);
+        mRecyclerViewPost.setNestedScrollingEnabled(false);
+
+        linearLayoutManager1 = new LinearLayoutManager(this);
+        linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
+        mRecyclerViewRecentPost.setLayoutManager(linearLayoutManager1);
+        mRecentPostViewAdapter = new RecentPostViewAdapter(this, mRecentPostObject);
+        mRecyclerViewRecentPost.setAdapter(mRecentPostViewAdapter);
+        mRecentPostObject.add(new RecentPostObject(1,"aads"));
+        mRecentPostObject.add(new RecentPostObject(1,"aads"));
+        mRecentPostObject.add(new RecentPostObject(1,"aads"));
+        mRecentPostObject.add(new RecentPostObject(1,"aads"));
+        mRecentPostObject.add(new RecentPostObject(1,"aads"));
+        mRecentPostObject.add(new RecentPostObject(1,"aads"));
+        mRecentPostViewAdapter.notifyDataSetChanged();
+
+        linearLayoutManager2 = new LinearLayoutManager(this);
+        linearLayoutManager2.setOrientation(RecyclerView.VERTICAL);
+        mRecyclerViewPost.setLayoutManager(linearLayoutManager2);
+        mPostViewAdapter = new PostViewAdapter(this, mPostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
 
         db = FirebaseFirestore.getInstance();
@@ -82,23 +109,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (task.isSuccessful()) {
                     for (DocumentSnapshot documentSnapshot : task.getResult()) {
                         PostViewObject mPostView = documentSnapshot.toObject(PostViewObject.class);
-                        PostViewObject.add(mPostView);
+                        mPostViewObject.add(mPostView);
                     }
+                    mShimmerViewContainer.stopShimmer();
+                    mShimmerViewContainer.setVisibility(View.GONE);
                     mPostViewAdapter.notifyDataSetChanged();
                     if (!(task.getResult().size() == 0))
                         lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
 
-                    mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
+                    mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager2) {
                         @Override
                         public void onLoadMore() {
                         }
-
                     });
                 }
             }
         });
-
-
 
     }
 

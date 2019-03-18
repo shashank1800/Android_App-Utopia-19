@@ -1,4 +1,4 @@
-package com.rnsit.utopia.Adapters;
+package com.rnsit.utopia.EndlessRecycler;
 
 import android.widget.AbsListView;
 
@@ -8,27 +8,27 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.rnsit.utopia.MainActivity;
-import com.rnsit.utopia.AdapterObjects.PostViewObject;
+import com.rnsit.utopia.AdapterObjects.SportsObject;
+import com.rnsit.utopia.Results;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener{
+public abstract class SportsEndlessRecyclerOnScrollListner extends RecyclerView.OnScrollListener{
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 5;
+    private static final int TOTAL_ITEM_EACH_LOAD = 6;
     private boolean isScrolling = false;
     private boolean isLastItemReached = false;
     private LinearLayoutManager mLinearLayoutManager;
     private FirebaseFirestore db;
 
-    public EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager) {
+    public SportsEndlessRecyclerOnScrollListner(LinearLayoutManager linearLayoutManager) {
         this.mLinearLayoutManager = linearLayoutManager;
         db = FirebaseFirestore.getInstance();
     }
 
     @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
         if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
             isScrolling = true;
@@ -36,7 +36,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
     }
 
     @Override
-    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
 
         int firstVisibleItemPosition = mLinearLayoutManager.findFirstVisibleItemPosition();
@@ -45,23 +45,23 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
 
         if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
             isScrolling = false;
-            Query nextQuery = db.collection("Posts")
+            Query nextQuery = db.collection("Sports")
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
-                    .startAfter(MainActivity.lastVisible)
+                    .startAfter(Results.lastVisible)
                     .limit(TOTAL_ITEM_EACH_LOAD);
             nextQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> t) {
                     if (t.isSuccessful()) {
-                        for (DocumentSnapshot d : t.getResult()) {
-                            PostViewObject mPostView = d.toObject(PostViewObject.class);
-                            MainActivity.PostViewObject.add(mPostView);
+                        for (DocumentSnapshot document : t.getResult()) {
+                            SportsObject mSportsObject= document.toObject(SportsObject.class);
+                            Results.sports.add(mSportsObject);
                         }
-                        MainActivity.mPostViewAdapter.notifyDataSetChanged();
+                        Results.mSportsViewAdapter.notifyDataSetChanged();
                         if(!(t.getResult().size()==0))
-                            MainActivity.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
+                            Results.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
 
-                        if (t.getResult().size()+1< TOTAL_ITEM_EACH_LOAD) {
+                        if (t.getResult().size()+2< TOTAL_ITEM_EACH_LOAD) {
                             isLastItemReached = true;
                         }
                     }
