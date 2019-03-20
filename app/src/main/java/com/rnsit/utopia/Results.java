@@ -125,6 +125,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mShimmerViewContainer.setVisibility(View.VISIBLE);
         mShimmerViewContainer.startShimmer();
         int id = item.getItemId();
         switch (id){

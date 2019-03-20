@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">UTOPIA</string>
+    <string name="API_KEY">AIzaSyB6vquKhw7wFfk4WWN7KMzD1B3OgfZMhrA</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,4 +9,6 @@
     <string name="dev_name">Shashank Bhat</string>
     <string name="dev_branch">CSE</string>
     <string name="dev_linkedin">www.linkedin.com/in/shashank-bhat-924b1bb9</string>
+    <string name="utopia_video_link">"ak-yN-8K2cU"</string>
+
 </resources>
