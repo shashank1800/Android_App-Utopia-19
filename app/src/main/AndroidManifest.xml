@@ -73,9 +73,9 @@
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
-            android:name=".feedback"
+            android:name=".Feedback"
             android:label="Feedback"
-            android:parentActivityName=".feedback">
+            android:parentActivityName=".Feedback">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
@@ -90,7 +90,7 @@
         </activity>
         <activity
             android:name=".AboutApp"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:label="Utopia 2K19"
             android:parentActivityName=".AboutApp">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

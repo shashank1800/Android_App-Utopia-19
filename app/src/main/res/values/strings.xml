@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">UTOPIA</string>
     <string name="API_KEY">AIzaSyB6vquKhw7wFfk4WWN7KMzD1B3OgfZMhrA</string>
+    <string name="about_utopia">\t \t \t \t Lose john poor same it case do year we. Full how way even the sigh. Extremely nor furniture fat questions now provision incommode preserved. Our side fail find like now. Discovered travelling for insensible partiality unpleasing impossible she. Sudden up my excuse to suffer ladies though or. Bachelor possible marianne directly confined relation as on he.
+
+Can curiosity may end shameless explained. \n \t \t \t \t True high on said mr on come. An do mr design at little myself wholly entire though. Attended of on stronger or mr pleasure. Rich four like real yet west get. Felicity in dwelling to drawings. His pleasure new steepest for reserved formerly disposed jennings. </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,7 +11,6 @@
     <string name="dev_description">Hey,I\'m an Android Developer</string>
     <string name="dev_name">Shashank Bhat</string>
     <string name="dev_branch">CSE</string>
-    <string name="dev_linkedin">www.linkedin.com/in/shashank-bhat-924b1bb9</string>
     <string name="utopia_video_link">"ak-yN-8K2cU"</string>
-
+    <string name="submit">Submit</string>
 </resources>

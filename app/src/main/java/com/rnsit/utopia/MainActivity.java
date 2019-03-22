@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +29,6 @@ import com.rnsit.utopia.AdapterObjects.PostViewObject;
 import com.rnsit.utopia.AdapterObjects.RecentPostObject;
 import com.rnsit.utopia.EndlessRecycler.EndlessRecyclerOnScrollListener;
 import com.rnsit.utopia.Adapters.PostViewAdapter;
-import com.rnsit.utopia.Adapters.RecentPostViewAdapter;
 
 import java.util.ArrayList;
 
@@ -38,17 +39,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Context context;
     private NavigationView navigationView;
 
-    private RecyclerView mRecyclerViewPost,mRecyclerViewRecentPost;
+    private RecyclerView mRecyclerViewPost;
     public static PostViewAdapter mPostViewAdapter;
-    private RecentPostViewAdapter mRecentPostViewAdapter;
-    private LinearLayoutManager linearLayoutManager1,linearLayoutManager2;
+    private LinearLayoutManager linearLayoutManager1;
     public static ArrayList<PostViewObject> mPostViewObject;
     private ArrayList<RecentPostObject> mRecentPostObject;
 
     private FirebaseFirestore db;
     private Query query;
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 4;
+    private static final int TOTAL_ITEM_EACH_LOAD = 6;
     public static DocumentSnapshot lastVisible;
 
     private ShimmerFrameLayout mShimmerViewContainer;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         context = this;
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -76,26 +77,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecentPostObject = new ArrayList<RecentPostObject>();
         mPostViewObject = new ArrayList<PostViewObject>();
 
-        mRecyclerViewRecentPost = (RecyclerView) findViewById(R.id.main_recent_post);
         mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
-        mRecyclerViewPost.setNestedScrollingEnabled(false);
 
         linearLayoutManager1 = new LinearLayoutManager(this);
-        linearLayoutManager1.setOrientation(RecyclerView.HORIZONTAL);
-        mRecyclerViewRecentPost.setLayoutManager(linearLayoutManager1);
-        mRecentPostViewAdapter = new RecentPostViewAdapter(this, mRecentPostObject);
-        mRecyclerViewRecentPost.setAdapter(mRecentPostViewAdapter);
-        mRecentPostObject.add(new RecentPostObject(1,"aads"));
-        mRecentPostObject.add(new RecentPostObject(1,"aads"));
-        mRecentPostObject.add(new RecentPostObject(1,"aads"));
-        mRecentPostObject.add(new RecentPostObject(1,"aads"));
-        mRecentPostObject.add(new RecentPostObject(1,"aads"));
-        mRecentPostObject.add(new RecentPostObject(1,"aads"));
-        mRecentPostViewAdapter.notifyDataSetChanged();
-
-        linearLayoutManager2 = new LinearLayoutManager(this);
-        linearLayoutManager2.setOrientation(RecyclerView.VERTICAL);
-        mRecyclerViewPost.setLayoutManager(linearLayoutManager2);
+        linearLayoutManager1.setOrientation(RecyclerView.VERTICAL);
+        mRecyclerViewPost.setLayoutManager(linearLayoutManager1);
         mPostViewAdapter = new PostViewAdapter(this, mPostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
 
@@ -117,10 +103,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (!(task.getResult().size() == 0))
                         lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
 
-                    mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager2) {
+                    mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager1) {
                         @Override
-                        public void onLoadMore() {
-                        }
+                        public void onLoadMore() {}
                     });
                 }
             }
@@ -155,8 +140,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_feedback_text:
-                intent = new Intent(context, feedback.class);
-                startActivity(intent);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Feedback feedback = new Feedback();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                transaction.add(android.R.id.content, feedback).addToBackStack(null).commit();
                 break;
             case R.id.nav_shareapp:
                 intent = new Intent();
@@ -166,8 +154,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_aboutdev:
-                intent = new Intent(context, AboutDev.class);
-                startActivity(intent);
+                fragmentManager = getSupportFragmentManager();
+                AboutDev aboutDev = new AboutDev();
+                transaction = fragmentManager.beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.add(android.R.id.content, aboutDev).addToBackStack(null).commit();
+
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

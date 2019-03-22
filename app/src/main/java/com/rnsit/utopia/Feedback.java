@@ -1,11 +1,15 @@
 package com.rnsit.utopia;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,29 +20,33 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class feedback extends AppCompatActivity {
+public class Feedback extends DialogFragment {
     private EditText feedback_text;
     private Button submit;
     private Context context;
     private FirebaseFirestore db;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
-        context = this;
-        feedback_text = (EditText) findViewById(R.id.feedback_text);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.activity_feedback, container, false);
+        context=this.getActivity();
 
-        submit = (Button) findViewById(R.id.submit);
+        feedback_text = view.findViewById(R.id.feedback_text);
+
+        submit = view.findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(feedback_text.getText().toString().compareTo("")==0)
-                    Snackbar.make(findViewById(R.id.linearLayout), "Please enter Feedback text", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view.findViewById(R.id.linearLayout), "Please enter Feedback text", Snackbar.LENGTH_SHORT).show();
                 else {
-                    Snackbar.make(findViewById(R.id.linearLayout), "Thanks for your Feedback!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view.findViewById(R.id.linearLayout), "Thanks for your Feedback!", Snackbar.LENGTH_SHORT).show();
 
                     String uniqueID = UUID.randomUUID().toString();
                     String feedbackText = feedback_text.getText().toString();
@@ -56,5 +64,7 @@ public class feedback extends AppCompatActivity {
                 }
             }
         });
+
+        return  view;
     }
 }

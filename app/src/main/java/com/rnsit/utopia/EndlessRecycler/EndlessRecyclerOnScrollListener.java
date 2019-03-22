@@ -44,6 +44,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
         int totalItemCount = mLinearLayoutManager.getItemCount();
 
         if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+
             isScrolling = false;
             Query nextQuery = db.collection("Posts")
                     .orderBy("timeStamp",Query.Direction.DESCENDING)

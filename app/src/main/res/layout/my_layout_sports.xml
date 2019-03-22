@@ -19,7 +19,8 @@
                 android:id="@+id/eventName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_5dp"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:layout_marginTop="@dimen/dimen_2dp"
                 android:textColor="@color/cardTextColor"
                 android:textStyle="bold"
                 android:textSize="@dimen/dimen_22sp"
@@ -28,8 +29,8 @@
                 android:id="@+id/subHead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_10dp"
-                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginStart="@dimen/dimen_10dp"
+                android:layout_marginBottom="@dimen/dimen_2dp"
                 android:textColor="@color/cardTextColor"
                 android:textStyle="italic"
                 android:textSize="@dimen/dimen_16sp"/>
@@ -47,18 +48,15 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/teamImage1"
-                    android:layout_width="@dimen/dimen_50dp"
-                    android:layout_height="@dimen/dimen_50dp"
+                    android:layout_width="@dimen/dimen_60dp"
+                    android:layout_height="@dimen/dimen_60dp"
                     android:layout_marginEnd="@dimen/dimen_30dp"
                     android:layout_gravity="end"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="V/S"
-                android:textColor="@color/white"
-                android:textSize="@dimen/dimen_20sp"
-                android:textStyle="bold"
+            <ImageView
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:src="@drawable/vs"
                 android:layout_gravity="center"/>
             <LinearLayout
                 android:layout_width="@dimen/dimen_0dp"
@@ -67,9 +65,9 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/teamImage2"
-                    android:layout_width="@dimen/dimen_50dp"
-                    android:layout_height="@dimen/dimen_50dp"
-                    android:layout_marginLeft="@dimen/dimen_30dp"
+                    android:layout_width="@dimen/dimen_60dp"
+                    android:layout_height="@dimen/dimen_60dp"
+                    android:layout_marginStart="@dimen/dimen_30dp"
                     android:layout_gravity="start"/>
             </LinearLayout>
         </LinearLayout>
@@ -82,7 +80,7 @@
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="@dimen/dimen_16sp"
+            android:textSize="@dimen/dimen_20sp"
             android:fontFamily="sans-serif"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

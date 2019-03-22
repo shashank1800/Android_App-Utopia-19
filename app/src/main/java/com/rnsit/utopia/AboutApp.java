@@ -20,7 +20,7 @@ public class AboutApp extends YouTubeBaseActivity {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 if(!b) {
-                    youTubePlayer.loadVideo(getString(R.string.utopia_video_link));
+                    youTubePlayer.cueVideo(getString(R.string.utopia_video_link));
                     youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
                 }
             }
