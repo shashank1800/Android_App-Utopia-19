@@ -73,14 +73,6 @@
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
         <activity
-            android:name=".Feedback"
-            android:label="Feedback"
-            android:parentActivityName=".Feedback">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.rnsit.utopia.MainActivity" />
-        </activity>
-        <activity
             android:name=".Contact"
             android:label="Coordinators"
             android:parentActivityName=".Contact">
@@ -90,16 +82,7 @@
         </activity>
         <activity
             android:name=".AboutApp"
-            android:label="Utopia 2K19"
             android:parentActivityName=".AboutApp">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.rnsit.utopia.MainActivity" />
-        </activity>
-        <activity
-            android:name=".AboutDev"
-            android:label="About Developer"
-            android:parentActivityName=".AboutDev">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rnsit.utopia.MainActivity" />
@@ -111,5 +94,4 @@
             </intent-filter>
         </service>
     </application>
-
 </manifest>

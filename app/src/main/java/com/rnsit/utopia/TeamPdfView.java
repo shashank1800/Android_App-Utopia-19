@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
+import java.util.Objects;
+
 public class TeamPdfView extends AppCompatActivity {
 
     private Context context;
@@ -17,7 +19,7 @@ public class TeamPdfView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_pdf_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         context = this;
 

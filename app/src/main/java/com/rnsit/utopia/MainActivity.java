@@ -6,17 +6,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +43,9 @@ import com.rnsit.utopia.EndlessRecycler.EndlessRecyclerOnScrollListener;
 import com.rnsit.utopia.Adapters.PostViewAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -140,26 +155,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_feedback_text:
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                Feedback feedback = new Feedback();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                transaction.add(android.R.id.content, feedback).addToBackStack(null).commit();
+                showFeedbackDialog();
                 break;
             case R.id.nav_shareapp:
                 intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!");
                 intent.setType("text/plain");
+                final String appPackageName = getPackageName();
+                try {
+                    intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + appPackageName);
+                } catch (ActivityNotFoundException ignored) { }
                 startActivity(intent);
                 break;
             case R.id.nav_aboutdev:
-                fragmentManager = getSupportFragmentManager();
-                AboutDev aboutDev = new AboutDev();
-                transaction = fragmentManager.beginTransaction();
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.add(android.R.id.content, aboutDev).addToBackStack(null).commit();
-
+                showAboutDevDialog();
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -173,6 +183,118 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private void showFeedbackDialog() {
+        final ViewGroup viewGroup = findViewById(android.R.id.content);
+        final View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_feedback, viewGroup, false);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Feedback");
+        builder.setPositiveButton(R.string.submit, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                EditText feedback_text = dialogView.findViewById(R.id.feedback_text);
+                if(feedback_text.getText().toString().compareTo("")==0)
+                    Toast.makeText(context,"Please enter Feedback text",Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context,"Thanks for your Feedback!",Toast.LENGTH_SHORT).show();
+                    String uniqueID = UUID.randomUUID().toString();
+                    String feedbackText = feedback_text.getText().toString();
+
+                    Map<String, Object> feedback = new HashMap<>();
+                    feedback.put("feedbackText", feedbackText);
+
+                    db = FirebaseFirestore.getInstance();
+                    db.collection("Feedback").document(uniqueID).set(feedback);
+
+                    InputMethodManager keyboard = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    keyboard.hideSoftInputFromWindow(viewGroup.getWindowToken(), 0);
+                }
+            }
+        });
+
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void showAboutDevDialog() {
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.activity_about_dev, viewGroup, false);
+
+        ImageView dev_photo = dialogView.findViewById(R.id.photo);
+        Glide.with(this)
+                .load(R.drawable.my_photo)
+                .apply(RequestOptions.circleCropTransform())
+                .into(dev_photo);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        dialogView.findViewById(R.id.fb).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String urlFb="https://www.facebook.com/shashankbhat114";
+                String appFb="fb://facewebmodal/f?href="+urlFb;
+
+                try {
+                    if (isAppInstalled(context, "com.facebook.orca") || isAppInstalled(context, "com.facebook.katana")
+                            || isAppInstalled(context, "com.example.facebook") || isAppInstalled(context, "com.facebook.android")) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(appFb)));
+                    } else {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlFb)));
+                    }
+                }catch (Exception e){e.printStackTrace();}
+            }
+        });
+
+        dialogView.findViewById(R.id.ln).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String urlLn="https://www.linkedin.com/in/shashank-bhat-924b1bb9/";
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(urlLn));
+                    intent.setPackage("com.linkedin.android");
+                    startActivity(intent);
+                }
+                catch (ActivityNotFoundException anfe)
+                {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlLn)));
+                }
+
+            }
+        });
+
+        dialogView.findViewById(R.id.insta).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String appIs="http://instagram.com/shashank_bhat__";
+                String urlIs="http://instagram.com/_u/shashank_bhat__";
+
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(appIs));
+                    intent.setPackage("com.instagram.android");
+                    startActivity(intent);
+                }
+                catch (ActivityNotFoundException anfe)
+                {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlIs)));
+                }
+            }
+        });
+    }
+    public static boolean isAppInstalled(Context context, String packageName) {
+        try {
+            context.getPackageManager().getApplicationInfo(packageName, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
         }
     }
 }

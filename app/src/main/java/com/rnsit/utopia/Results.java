@@ -32,6 +32,7 @@ import com.rnsit.utopia.EndlessRecycler.SportsEndlessRecyclerOnScrollListner;
 import com.rnsit.utopia.EndlessRecycler.TechEndlessRecyclerOnScrollListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Results extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -143,7 +144,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         sports.clear();
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 SportsObject  mSportsObject= document.toObject(SportsObject.class);
                                 sports.add(mSportsObject);
                             }
@@ -177,7 +178,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         cflObjects.clear();
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
                                 cflObjects.add(mCFLObject);
                             }
@@ -245,7 +246,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         cflObjects.clear();
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
                                 cflObjects.add(mCFLObject);
                             }
@@ -278,7 +279,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         techs.clear();
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
+                            for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 TechObject mTechObject = document.toObject(TechObject.class);
                                 techs.add(mTechObject);
                             }

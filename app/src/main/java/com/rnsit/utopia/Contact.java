@@ -30,13 +30,13 @@ public class Contact extends AppCompatActivity{
 
         rec_coordinators = (RecyclerView)findViewById(R.id.rec_coordinators);
         mCoordinatorObject = new ArrayList<CoordinatorObject>();
-        linearLayoutManager1 = new LinearLayoutManager(this);
+        linearLayoutManager1 = new LinearLayoutManager(context);
         linearLayoutManager1.setOrientation(RecyclerView.VERTICAL);
         rec_coordinators.setLayoutManager(linearLayoutManager1);
-        mCoordinatorAdapter = new CoordinatorAdapter(this, mCoordinatorObject);
+        mCoordinatorAdapter = new CoordinatorAdapter(context, mCoordinatorObject);
         rec_coordinators.setAdapter(mCoordinatorAdapter);
-        mCoordinatorObject.add(new CoordinatorObject("Cultural",R.drawable.my_photo,"Shashank Bhat","+91 77655555211",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
-        mCoordinatorObject.add(new CoordinatorObject("Fun",R.drawable.my_photo,"Shashank Bhat","+91 77655555211",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
+        mCoordinatorObject.add(new CoordinatorObject("Cultural",R.drawable.my_photo,"Shashank Bhat","+91 7044142526",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
+        mCoordinatorObject.add(new CoordinatorObject("Fun",R.drawable.funboy,"Sharan Chhibbar","+91 77655555211",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
         mCoordinatorObject.add(new CoordinatorObject("Literature",R.drawable.my_photo,"Shashank Bhat","+91 77655555211",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
         mCoordinatorObject.add(new CoordinatorObject("Sports",R.drawable.my_photo,"Shashank Bhat","+91 77655555211",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
         mCoordinatorObject.add(new CoordinatorObject("Technical",R.drawable.my_photo,"Shashank Bhat","+91 77655555211",R.drawable.my_photo,"Hjdfjdjddj ","+91 7760254155"));
