@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 public class SplashScreen extends AppCompatActivity {
-    private int SPLASH_TIME = 7000;
+    private int SPLASH_TIME = 300;
     private Context context;
     private ImageView splash_gif;
 
@@ -22,8 +22,8 @@ public class SplashScreen extends AppCompatActivity {
 
         context = this;
 
-        splash_gif = (ImageView)findViewById(R.id.splash_gif);
-        Glide.with(context).asGif().load(R.drawable.splash_screen).into(splash_gif);
+        //splash_gif = (ImageView)findViewById(R.id.splash_gif);
+        //Glide.with(context).asGif().load(R.drawable.splash_screen).into(splash_gif);
 
         new Handler().postDelayed(new Runnable() {
             @Override

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class CultEndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener{
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 6;
+    private static final int TOTAL_ITEM_EACH_LOAD = 10;
     private boolean isScrolling = false;
     private boolean isLastItemReached = false;
     private LinearLayoutManager mLinearLayoutManager;

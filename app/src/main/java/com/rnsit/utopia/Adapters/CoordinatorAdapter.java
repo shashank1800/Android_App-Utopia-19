@@ -64,9 +64,4 @@ public class CoordinatorAdapter extends RecyclerView.Adapter<CoordinatorAdapter.
     public int getItemCount() {
         return mCoordinatorObject.size();
     }
-
-    public void clear(){
-        mCoordinatorObject.clear();
-        notifyDataSetChanged();
-    }
 }

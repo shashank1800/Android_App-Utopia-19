@@ -39,11 +39,11 @@ public class Teams extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(context,TeamPdfView.class);
         switch (v.getId()){
             case R.id.team1Card:
-                intent.putExtra("pdfName","tech_fest.pdf");
+                intent.putExtra("pdfName","team1.pdf");
                 startActivity(intent);
                 break;
             case R.id.team2Card:
-                intent.putExtra("pdfName","cg.pdf");
+                intent.putExtra("pdfName","team1.pdf");
                 startActivity(intent);
                 break;
             case R.id.team3Card:
@@ -51,7 +51,7 @@ public class Teams extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.team4Card:
-                intent.putExtra("pdfName","tech_fest.pdf");
+                intent.putExtra("pdfName","team1.pdf");
                 startActivity(intent);
                 break;
         }

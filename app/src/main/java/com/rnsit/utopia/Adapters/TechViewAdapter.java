@@ -4,6 +4,8 @@ import com.rnsit.utopia.AdapterObjects.TechObject;
 import com.rnsit.utopia.R;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,14 +29,16 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView eventName,partName;
-        public ImageView teamImage1;
+        TextView eventName,firstName,secondName;
+        ImageView teamImage1,teamImage2;
 
         public ViewHolder(@Nullable View itemView) {
             super(itemView);
             eventName = (TextView) itemView.findViewById(R.id.eventName);
-            partName = (TextView) itemView.findViewById(R.id.partName);
+            firstName = (TextView) itemView.findViewById(R.id.firstName);
+            secondName = (TextView) itemView.findViewById(R.id.secondName);
             teamImage1 = (ImageView)itemView.findViewById(R.id.teamImage1);
+            teamImage2 = (ImageView)itemView.findViewById(R.id.teamImage2);
         }
     }
 
@@ -46,7 +50,7 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(TechViewAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull TechViewAdapter.ViewHolder viewHolder, int i) {
         Map<String,Integer> m = new TreeMap<>();
         m.put("Venu Venus",R.drawable.venus);
         m.put("Eart Earth",R.drawable.earth);
@@ -55,9 +59,11 @@ public class TechViewAdapter extends RecyclerView.Adapter<TechViewAdapter.ViewHo
 
         viewHolder.eventName.setTag(mTech.get(i));
         viewHolder.eventName.setText(mTech.get(i).getEventName());
-        viewHolder.partName.setText(mTech.get(i).getPartName());
-        viewHolder.teamImage1.setImageResource(m.get(mTech.get(i).getTeamName()));
-    }
+        viewHolder.firstName.setText(mTech.get(i).getFirstName());
+        viewHolder.secondName.setText(mTech.get(i).getSecondName());
+        viewHolder.teamImage1.setImageResource(m.get(mTech.get(i).getFirstTeam()));
+        viewHolder.teamImage2.setImageResource(m.get(mTech.get(i).getSecondTeam()));
+}
 
     @Override
     public int getItemCount() {

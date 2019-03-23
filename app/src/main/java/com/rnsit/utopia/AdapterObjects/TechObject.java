@@ -4,13 +4,17 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class TechObject implements Serializable{
-    String eventName,partName,teamName;
+    String eventName,firstName,secondName,thirdName,firstTeam,secondTeam,thirdTeam;
     long timeStamp;
-    public TechObject (long timeStamp,String eventName,String partName,String teamName){
+    public TechObject (long timeStamp,String eventName,String firstName,String secondName,String thirdName,String firstTeam,String secondTeam,String thirdTeam){
         this.timeStamp = timeStamp;
         this.eventName = eventName;
-        this.partName = partName;
-        this.teamName = teamName;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.thirdName = thirdName;
+        this.firstTeam = firstTeam;
+        this.secondTeam = secondTeam;
+        this.thirdTeam = thirdTeam;
     }
     public TechObject(){}
 
@@ -30,19 +34,51 @@ public class TechObject implements Serializable{
         this.eventName = eventName;
     }
 
-    public String getPartName() {
-        return partName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPartName(String partName) {
-        this.partName = partName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public String getFirstTeam() {
+        return firstTeam;
+    }
+
+    public void setFirstTeam(String firstTeam) {
+        this.firstTeam = firstTeam;
+    }
+
+    public String getSecondTeam() {
+        return secondTeam;
+    }
+
+    public void setSecondTeam(String secondTeam) {
+        this.secondTeam = secondTeam;
+    }
+
+    public String getThirdName() {
+        return thirdName;
+    }
+
+    public void setThirdName(String thirdName) {
+        this.thirdName = thirdName;
+    }
+
+    public String getThirdTeam() {
+        return thirdTeam;
+    }
+
+    public void setThirdTeam(String thirdTeam) {
+        this.thirdTeam = thirdTeam;
     }
 }

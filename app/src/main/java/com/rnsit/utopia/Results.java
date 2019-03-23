@@ -42,7 +42,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     private Context context;
     private FirebaseFirestore db;
     private Query query;
-    private static final int TOTAL_ITEM_EACH_LOAD = 6;
+    private static final int TOTAL_ITEM_EACH_LOAD = 10;
     public static DocumentSnapshot lastVisible;
 
     public static RecyclerView mRecyclerFun,mRecyclerSports,mRecyclerCult,mRecyclerTech,mRecyclerLit;

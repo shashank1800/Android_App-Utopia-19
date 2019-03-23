@@ -27,8 +27,8 @@ public class CFLViewAdapter extends RecyclerView.Adapter<CFLViewAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView eventName,firstName,secondName;
-        public ImageView teamImage1,teamImage2;
+        TextView eventName,firstName,secondName;
+        ImageView teamImage1,teamImage2;
 
         public ViewHolder(@Nullable View itemView) {
             super(itemView);
@@ -56,7 +56,6 @@ public class CFLViewAdapter extends RecyclerView.Adapter<CFLViewAdapter.ViewHold
         m.put("Merc Mercury",R.drawable.mercury);
         m.put("Mars Mars",R.drawable.mars);
 
-        viewHolder.eventName.setTag(mCFLObject.get(i));
         viewHolder.eventName.setText(mCFLObject.get(i).getEventName());
         viewHolder.firstName.setText(mCFLObject.get(i).getFirstName());
         viewHolder.secondName.setText(mCFLObject.get(i).getSecondName());

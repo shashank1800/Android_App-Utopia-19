@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.shimmer.Shimmer;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(DialogInterface dialog, int which) {
                 EditText feedback_text = dialogView.findViewById(R.id.feedback_text);
                 if(feedback_text.getText().toString().compareTo("")==0)
-                    Toast.makeText(context,"Please enter Feedback text",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Please enter feedback text",Toast.LENGTH_SHORT).show();
                 else {
                     Toast.makeText(context,"Thanks for your Feedback!",Toast.LENGTH_SHORT).show();
                     String uniqueID = UUID.randomUUID().toString();

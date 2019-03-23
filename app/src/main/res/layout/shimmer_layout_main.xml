@@ -6,13 +6,14 @@
     android:orientation="vertical">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_250dp"
+        android:layout_height="190dp"
         android:layout_margin="@dimen/dimen_5dp"
         app:cardCornerRadius="@dimen/dimen_6dp"
         app:cardBackgroundColor="@color/shimmer_color"/>
-    <View
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_30dp"
+        android:layout_height="@dimen/dimen_40dp"
         android:layout_margin="@dimen/dimen_5dp"
-        android:background="@color/shimmer_color"/>
+        app:cardCornerRadius="@dimen/dimen_6dp"
+        app:cardBackgroundColor="@color/shimmer_color"/>
 </LinearLayout>
