@@ -4,6 +4,8 @@ import com.rnsit.utopia.AdapterObjects.SportsObject;
 import com.rnsit.utopia.R;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,19 +49,18 @@ public class SportsViewAdapter extends RecyclerView.Adapter<SportsViewAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(SportsViewAdapter.ViewHolder viewHolder, int i) {
-        Map<String,Integer> m = new TreeMap<>();
-        m.put("Venu Venus",R.drawable.venus);
-        m.put("Eart Earth",R.drawable.earth);
-        m.put("Merc Mercury",R.drawable.mercury);
-        m.put("Mars Mars",R.drawable.mars);
+    public void onBindViewHolder(@NonNull SportsViewAdapter.ViewHolder viewHolder, int i) {
+        Map<String,Integer> teams = new TreeMap<String,Integer>();
+        teams.put("Elegant Egyptians",R.drawable.venus);
+        teams.put("Radiant Romans",R.drawable.earth);
+        teams.put("Shielding Spartans",R.drawable.mercury);
+        teams.put("Vigorous Vikings",R.drawable.mars);
         viewHolder.eventName.setTag(mSports.get(i));
         viewHolder.eventName.setText(mSports.get(i).getEventName());
         viewHolder.subHead.setText(mSports.get(i).getSubHead());
-        viewHolder.teamImage1.setImageResource(m.get(mSports.get(i).getTeamName1()));
-        viewHolder.teamImage2.setImageResource(m.get(mSports.get(i).getTeamName2()));
+        viewHolder.teamImage1.setImageResource(teams.get(mSports.get(i).getTeamName1()));
+        viewHolder.teamImage2.setImageResource(teams.get(mSports.get(i).getTeamName2()));
         viewHolder.winnerName.setText(mSports.get(i).getWinnerName()+" Won");
-
     }
 
     @Override

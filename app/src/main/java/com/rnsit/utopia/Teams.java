@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.google.android.material.card.MaterialCardView;
-
 public class Teams extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayout team1Card,team2Card,team3Card,team4Card;
@@ -39,19 +37,19 @@ public class Teams extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(context,TeamPdfView.class);
         switch (v.getId()){
             case R.id.team1Card:
-                intent.putExtra("pdfName","team1.pdf");
+                intent.putExtra("pdfName","elegant_egyptians.pdf");
                 startActivity(intent);
                 break;
             case R.id.team2Card:
-                intent.putExtra("pdfName","team1.pdf");
+                intent.putExtra("pdfName","radiant_romans.pdf");
                 startActivity(intent);
                 break;
             case R.id.team3Card:
-                intent.putExtra("pdfName","team1.pdf");
+                intent.putExtra("pdfName","shielding_spartans.pdf");
                 startActivity(intent);
                 break;
             case R.id.team4Card:
-                intent.putExtra("pdfName","team1.pdf");
+                intent.putExtra("pdfName","vigorous_vikings.pdf");
                 startActivity(intent);
                 break;
         }

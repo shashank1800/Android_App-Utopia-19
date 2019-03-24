@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,7 +30,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.facebook.shimmer.Shimmer;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,7 +39,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.PostViewObject;
-import com.rnsit.utopia.AdapterObjects.RecentPostObject;
 import com.rnsit.utopia.EndlessRecycler.EndlessRecyclerOnScrollListener;
 import com.rnsit.utopia.Adapters.PostViewAdapter;
 
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static PostViewAdapter mPostViewAdapter;
     private LinearLayoutManager linearLayoutManager1;
     public static ArrayList<PostViewObject> mPostViewObject;
-    private ArrayList<RecentPostObject> mRecentPostObject;
 
     private FirebaseFirestore db;
     private Query query;
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static DocumentSnapshot lastVisible;
 
     private ShimmerFrameLayout mShimmerViewContainer;
+    private SwipeRefreshLayout mySwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +86,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        mySwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
+
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
         mShimmerViewContainer.startShimmer();
 
-        mRecentPostObject = new ArrayList<RecentPostObject>();
         mPostViewObject = new ArrayList<PostViewObject>();
 
         mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
@@ -101,6 +101,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mPostViewAdapter = new PostViewAdapter(this, mPostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
 
+
+        mySwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        mPostViewAdapter.clear();
+                        mPostViewObject.clear();
+                        doYourUpdate();
+                    }
+                }
+        );
+    }
+
+    public void doYourUpdate(){
         db = FirebaseFirestore.getInstance();
         query = db.collection("Posts")
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
@@ -113,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         PostViewObject mPostView = documentSnapshot.toObject(PostViewObject.class);
                         mPostViewObject.add(mPostView);
                     }
+                    mySwipeRefreshLayout.setRefreshing(false);
                     mShimmerViewContainer.stopShimmer();
                     mShimmerViewContainer.setVisibility(View.GONE);
                     mPostViewAdapter.notifyDataSetChanged();
@@ -126,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
     }
 
     @Override
@@ -161,12 +175,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_shareapp:
                 intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!");
-                intent.setType("text/plain");
                 final String appPackageName = getPackageName();
                 try {
                     intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + appPackageName);
                 } catch (ActivityNotFoundException ignored) { }
+                intent.setType("text/plain");
                 startActivity(intent);
                 break;
             case R.id.nav_aboutdev:

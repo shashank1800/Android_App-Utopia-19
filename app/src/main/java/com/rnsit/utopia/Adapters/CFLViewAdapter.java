@@ -50,17 +50,17 @@ public class CFLViewAdapter extends RecyclerView.Adapter<CFLViewAdapter.ViewHold
     @Override
     public void onBindViewHolder(CFLViewAdapter.ViewHolder viewHolder, int i) {
 
-        Map<String,Integer> m = new TreeMap<>();
-        m.put("Venu Venus",R.drawable.venus);
-        m.put("Eart Earth",R.drawable.earth);
-        m.put("Merc Mercury",R.drawable.mercury);
-        m.put("Mars Mars",R.drawable.mars);
+        Map<String,Integer> teams = new TreeMap<String,Integer>();
+        teams.put("Elegant Egyptians",R.drawable.venus);
+        teams.put("Radiant Romans",R.drawable.earth);
+        teams.put("Shielding Spartans",R.drawable.mercury);
+        teams.put("Vigorous Vikings",R.drawable.mars);
 
         viewHolder.eventName.setText(mCFLObject.get(i).getEventName());
         viewHolder.firstName.setText(mCFLObject.get(i).getFirstName());
         viewHolder.secondName.setText(mCFLObject.get(i).getSecondName());
-        viewHolder.teamImage1.setImageResource(m.get(mCFLObject.get(i).getFirstTeam()));
-        viewHolder.teamImage2.setImageResource(m.get(mCFLObject.get(i).getSecondTeam()));
+        viewHolder.teamImage1.setImageResource(teams.get(mCFLObject.get(i).getFirstTeam()));
+        viewHolder.teamImage2.setImageResource(teams.get(mCFLObject.get(i).getSecondTeam()));
 
     }
 

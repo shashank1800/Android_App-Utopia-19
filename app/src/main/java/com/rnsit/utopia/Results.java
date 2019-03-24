@@ -2,14 +2,13 @@ package com.rnsit.utopia;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,8 +36,6 @@ import java.util.Objects;
 public class Results extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     public BottomNavigationView bottomNavigationView;
-    private Toolbar toolbar;
-    private DrawerLayout mDrawerLayout;
     private Context context;
     private FirebaseFirestore db;
     private Query query;
@@ -57,6 +54,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
     public static ArrayList<CFLObject> cflObjects;
 
     private ShimmerFrameLayout mShimmerViewContainer;
+    private LinearLayout not_updated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +69,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         cflObjects = new ArrayList<CFLObject>();
 
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
+        not_updated = (LinearLayout)findViewById(R.id.not_updated);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -148,6 +147,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                                 SportsObject  mSportsObject= document.toObject(SportsObject.class);
                                 sports.add(mSportsObject);
                             }
+                            if(sports.isEmpty())
+                                not_updated.setVisibility(View.VISIBLE);
                             mShimmerViewContainer.stopShimmer();
                             mShimmerViewContainer.setVisibility(View.GONE);
                             mSportsViewAdapter.notifyDataSetChanged();
@@ -182,6 +183,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
                                 cflObjects.add(mCFLObject);
                             }
+                            if(cflObjects.isEmpty())
+                                not_updated.setVisibility(View.VISIBLE);
                             mShimmerViewContainer.startShimmer();
                             mShimmerViewContainer.setVisibility(View.GONE);
                             mCFLViewAdapter.notifyDataSetChanged();
@@ -216,6 +219,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                                 CFLObject mCFLObject = document.toObject(CFLObject.class);
                                 cflObjects.add(mCFLObject);
                             }
+                            if(cflObjects.isEmpty())
+                                not_updated.setVisibility(View.VISIBLE);
                             mShimmerViewContainer.stopShimmer();
                             mShimmerViewContainer.setVisibility(View.GONE);
                             mCFLViewAdapter.notifyDataSetChanged();
@@ -283,6 +288,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                                 TechObject mTechObject = document.toObject(TechObject.class);
                                 techs.add(mTechObject);
                             }
+                            if(techs.isEmpty())
+                                not_updated.setVisibility(View.VISIBLE);
                             mShimmerViewContainer.stopShimmer();
                             mShimmerViewContainer.setVisibility(View.GONE);
                             mTechViewAdapter.notifyDataSetChanged();
@@ -309,6 +316,8 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerSports.setVisibility(View.GONE);
         mRecyclerLit.setVisibility(View.GONE);
         mRecyclerTech.setVisibility(View.GONE);
+
+        not_updated.setVisibility(View.GONE);
     }
 
     private void ClearAdapter() {
