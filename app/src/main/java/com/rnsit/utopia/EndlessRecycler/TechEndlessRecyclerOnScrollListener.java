@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.TechObject;
+import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.Results;
 
 import androidx.annotation.NonNull;
@@ -43,8 +44,10 @@ public abstract class TechEndlessRecyclerOnScrollListener extends RecyclerView.O
         int visibleItemCount = mLinearLayoutManager.getChildCount();
         int totalItemCount = mLinearLayoutManager.getItemCount();
 
-        if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+        if (MainActivity.isScrollListenerEnabled && isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+            MainActivity.isScrollListenerEnabled = false;
             isScrolling = false;
+
             Query nextQuery = db.collection("Technical")
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
                     .startAfter(Results.lastVisible)
@@ -57,6 +60,7 @@ public abstract class TechEndlessRecyclerOnScrollListener extends RecyclerView.O
                             TechObject mTechObject = document.toObject(TechObject.class);
                             Results.techs.add(mTechObject);
                         }
+                        MainActivity.isScrollListenerEnabled = true;
                         Results.mTechViewAdapter.notifyDataSetChanged();
                         if(!(t.getResult().size()==0))
                             Results.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);

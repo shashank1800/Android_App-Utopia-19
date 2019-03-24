@@ -11,24 +11,26 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.AdapterObjects.PostViewObject;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener{
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 6;
-    private boolean isScrolling = false;
+    private static final int TOTAL_ITEM_EACH_LOAD = 7;
+    private boolean isScrolling = true;
     private boolean isLastItemReached = false;
     private LinearLayoutManager mLinearLayoutManager;
     private FirebaseFirestore db;
 
-    public EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager) {
+    protected EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager) {
         this.mLinearLayoutManager = linearLayoutManager;
         db = FirebaseFirestore.getInstance();
     }
 
     @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
         if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
             isScrolling = true;
@@ -43,9 +45,10 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
         int visibleItemCount = mLinearLayoutManager.getChildCount();
         int totalItemCount = mLinearLayoutManager.getItemCount();
 
-        if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
-
+        if (MainActivity.isScrollListenerEnabled && isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+            MainActivity.isScrollListenerEnabled = false;
             isScrolling = false;
+
             Query nextQuery = db.collection("Posts")
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
                     .startAfter(MainActivity.lastVisible)
@@ -54,10 +57,11 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> t) {
                     if (t.isSuccessful()) {
-                        for (DocumentSnapshot d : t.getResult()) {
+                        for (DocumentSnapshot d : Objects.requireNonNull(t.getResult())) {
                             PostViewObject mPostView = d.toObject(PostViewObject.class);
                             MainActivity.mPostViewObject.add(mPostView);
                         }
+                        MainActivity.isScrollListenerEnabled = true;
                         MainActivity.mPostViewAdapter.notifyDataSetChanged();
                         if(!(t.getResult().size()==0))
                             MainActivity.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);

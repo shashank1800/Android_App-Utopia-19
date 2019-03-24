@@ -26,11 +26,11 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         mPosts = posts;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView postDetail,timeStamp;
-        public ImageView imagePostIV;
+    class ViewHolder extends RecyclerView.ViewHolder{
+        TextView postDetail,timeStamp;
+        ImageView imagePostIV;
 
-        public ViewHolder(@Nullable View itemView) {
+        ViewHolder(@Nullable View itemView) {
             super(itemView);
             postDetail = (TextView) itemView.findViewById(R.id.postDetail);
             timeStamp = (TextView) itemView.findViewById(R.id.timeStamp);
@@ -80,6 +80,10 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
     public void clear(){
         mPosts.clear();
         notifyDataSetChanged();
+    }
+
+    public void addAll(ArrayList<PostViewObject> posts){
+        mPosts.addAll(posts);
     }
 
 }

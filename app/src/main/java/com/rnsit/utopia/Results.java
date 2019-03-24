@@ -55,6 +55,7 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
     private ShimmerFrameLayout mShimmerViewContainer;
     private LinearLayout not_updated;
+    public static boolean isScrollListenerEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -19,11 +20,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -45,6 +48,7 @@ import com.rnsit.utopia.Adapters.PostViewAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,11 +66,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseFirestore db;
     private Query query;
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 6;
+    private static final int TOTAL_ITEM_EACH_LOAD = 7;
     public static DocumentSnapshot lastVisible;
 
     private ShimmerFrameLayout mShimmerViewContainer;
     private SwipeRefreshLayout mySwipeRefreshLayout;
+    public static boolean isScrollListenerEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         context = this;
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -87,12 +91,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         mySwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
-
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
         mShimmerViewContainer.startShimmer();
 
         mPostViewObject = new ArrayList<PostViewObject>();
-
         mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
 
         linearLayoutManager1 = new LinearLayoutManager(this);
@@ -100,30 +102,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRecyclerViewPost.setLayoutManager(linearLayoutManager1);
         mPostViewAdapter = new PostViewAdapter(this, mPostViewObject);
         mRecyclerViewPost.setAdapter(mPostViewAdapter);
+        mRecyclerViewPost.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerViewPost.getRecycledViewPool().setMaxRecycledViews(1,0);
 
-
+        updatePost();
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        mShimmerViewContainer.setVisibility(View.VISIBLE);
+                        mShimmerViewContainer.startShimmer();
                         mPostViewAdapter.clear();
                         mPostViewObject.clear();
-                        doYourUpdate();
+                        updatePost();
                     }
                 }
         );
     }
 
-    public void doYourUpdate(){
+    public void updatePost(){
         db = FirebaseFirestore.getInstance();
         query = db.collection("Posts")
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .limit(TOTAL_ITEM_EACH_LOAD);
+
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                    for (DocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
                         PostViewObject mPostView = documentSnapshot.toObject(PostViewObject.class);
                         mPostViewObject.add(mPostView);
                     }
@@ -131,12 +138,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mShimmerViewContainer.stopShimmer();
                     mShimmerViewContainer.setVisibility(View.GONE);
                     mPostViewAdapter.notifyDataSetChanged();
-                    if (!(task.getResult().size() == 0))
+
+                    if (!(task.getResult().size() <= 1))
                         lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
 
                     mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager1) {
                         @Override
-                        public void onLoadMore() {}
+                        public void onLoadMore() {
+                        }
                     });
                 }
             }
@@ -144,10 +153,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-        switch (id){
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
             case R.id.nav_teams:
                 Intent intent = new Intent(context, Teams.class);
                 startActivity(intent);
@@ -164,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(context, Contact.class);
                 startActivity(intent);
                 break;
-
             case R.id.nav_about_utopia:
                 intent = new Intent(context, AboutApp.class);
                 startActivity(intent);
@@ -175,11 +181,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_shareapp:
                 intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!");
+                intent.setType("text/plain");
                 final String appPackageName = getPackageName();
                 try {
                     intent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=" + appPackageName);
                 } catch (ActivityNotFoundException ignored) { }
-                intent.setType("text/plain");
                 startActivity(intent);
                 break;
             case R.id.nav_aboutdev:

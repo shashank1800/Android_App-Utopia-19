@@ -10,6 +10,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.CFLObject;
 import com.rnsit.utopia.AdapterObjects.TechObject;
+import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.Results;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,8 @@ public abstract class CultEndlessRecyclerOnScrollListener extends RecyclerView.O
         int visibleItemCount = mLinearLayoutManager.getChildCount();
         int totalItemCount = mLinearLayoutManager.getItemCount();
 
-        if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+        if (MainActivity.isScrollListenerEnabled && isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+            MainActivity.isScrollListenerEnabled = false;
             isScrolling = false;
             Query nextQuery = db.collection("Cultural")
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
@@ -58,6 +60,7 @@ public abstract class CultEndlessRecyclerOnScrollListener extends RecyclerView.O
                             CFLObject mCFLObject = document.toObject(CFLObject.class);
                             Results.cflObjects.add(mCFLObject);
                         }
+                        MainActivity.isScrollListenerEnabled = true;
                         Results.mCFLViewAdapter.notifyDataSetChanged();
                         if(!(t.getResult().size()==0))
                             Results.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);

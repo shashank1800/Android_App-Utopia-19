@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.SportsObject;
+import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.Results;
 
 import androidx.annotation.NonNull;
@@ -43,8 +44,10 @@ public abstract class SportsEndlessRecyclerOnScrollListner extends RecyclerView.
         int visibleItemCount = mLinearLayoutManager.getChildCount();
         int totalItemCount = mLinearLayoutManager.getItemCount();
 
-        if (isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+        if (MainActivity.isScrollListenerEnabled && isScrolling && (firstVisibleItemPosition + visibleItemCount == totalItemCount) && !isLastItemReached) {
+            MainActivity.isScrollListenerEnabled = false;
             isScrolling = false;
+
             Query nextQuery = db.collection("Sports")
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
                     .startAfter(Results.lastVisible)
@@ -57,6 +60,7 @@ public abstract class SportsEndlessRecyclerOnScrollListner extends RecyclerView.
                             SportsObject mSportsObject= document.toObject(SportsObject.class);
                             Results.sports.add(mSportsObject);
                         }
+                        MainActivity.isScrollListenerEnabled = true;
                         Results.mSportsViewAdapter.notifyDataSetChanged();
                         if(!(t.getResult().size()==0))
                             Results.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
