@@ -1,14 +1,10 @@
 <resources>
     <string name="app_name">UTOPIA \'19</string>
     <string name="API_KEY">AIzaSyB6vquKhw7wFfk4WWN7KMzD1B3OgfZMhrA</string>
-    <string name="about_utopia">\t \t \t \t Lose john poor same it case do year we. Full how way even the sigh. Extremely nor furniture fat questions now provision incommode preserved. Our side fail find like now. Discovered travelling for insensible partiality unpleasing impossible she. Sudden up my excuse to suffer ladies though or. Bachelor possible marianne directly confined relation as on he.
-
-Can curiosity may end shameless explained. \n \t \t \t \t True high on said mr on come. An do mr design at little myself wholly entire though. Attended of on stronger or mr pleasure. Rich four like real yet west get. Felicity in dwelling to drawings. His pleasure new steepest for reserved formerly disposed jennings. </string>
-
+    <string name="about_utopia">\t \t \t \t There are times you will look back \nWhen you are long ahead in your life \nThese moments won\'t repeat \nSo come live them once, let them be your memories \n \t \t \t \t When you look back at Utopia, you will see a thousand thoughts Hundreds of memories, overlapping faces \nShare them, let them be our memories of comfort ,happiness and friendship \n \t \t \t \t For today\'s moments are tomorrow\'s memories\n Let\'s make memories together \n Let this be a happy place to visit</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="dev_description">Hey,I\'m an Android Developer</string>
     <string name="dev_name">Shashank Bhat</string>
     <string name="dev_branch">Computer Science</string>
     <string name="utopia_video_link">"ak-yN-8K2cU"</string>

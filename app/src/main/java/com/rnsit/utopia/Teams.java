@@ -41,7 +41,7 @@ public class Teams extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.team2Card:
-                intent.putExtra("pdfName","radiant_romans.pdf");
+                intent.putExtra("pdfName","vigorous_vikings.pdf");
                 startActivity(intent);
                 break;
             case R.id.team3Card:
@@ -49,7 +49,7 @@ public class Teams extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.team4Card:
-                intent.putExtra("pdfName","vigorous_vikings.pdf");
+                intent.putExtra("pdfName","radiant_romans.pdf");
                 startActivity(intent);
                 break;
         }

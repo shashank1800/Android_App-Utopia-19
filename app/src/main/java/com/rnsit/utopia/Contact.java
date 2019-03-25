@@ -39,7 +39,7 @@ public class Contact extends AppCompatActivity{
         mCoordinatorObject.add(new CoordinatorObject("Fun",R.drawable.funboy,"Sharan Chhibber","7044142526",R.drawable.my_photo,"",""));
         mCoordinatorObject.add(new CoordinatorObject("Literature",R.drawable.my_photo,"","",R.drawable.litgirl,"Meghana V P ","9900207255"));
         mCoordinatorObject.add(new CoordinatorObject("Sports",R.drawable.sportsboy,"Eekshith","9490453239",R.drawable.my_photo,"",""));
-        mCoordinatorObject.add(new CoordinatorObject("Technical",R.drawable.my_photo,"","",R.drawable.techgirl,"Sheetal Vernekar","9632660327"));
+        mCoordinatorObject.add(new CoordinatorObject("Technical",R.drawable.techboy,"Varun Harish","9986780267",R.drawable.techgirl,"Sheetal Vernekar","9632660327"));
         mCoordinatorAdapter.notifyDataSetChanged();
     }
 }
