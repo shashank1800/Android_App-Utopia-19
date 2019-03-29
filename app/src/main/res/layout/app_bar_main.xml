@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/linearLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,9 +22,12 @@
             android:background="@color/colorPrimary"
             android:theme="@style/MainActivityTheme">
             <ImageView
+                android:id="@+id/utopiaLogo"
+                android:transitionName="@string/utopiaLogo"
                 android:layout_width="@dimen/dimen_100dp"
                 android:layout_height="60dp"
                 android:layout_margin="@dimen/dimen_10dp"
+                android:contentDescription="@string/contentDesc"
                 android:src="@drawable/utopia_logo"
                 android:layout_gravity="center"
                 app:layout_collapseMode="pin" />
@@ -39,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <include layout="@layout/shimmer_layout_main"/>
             <include layout="@layout/shimmer_layout_main"/>
             <include layout="@layout/shimmer_layout_main"/>
             <include layout="@layout/shimmer_layout_main"/>

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -18,18 +19,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -37,6 +37,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -59,14 +60,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
 
     private RecyclerView mRecyclerViewPost;
+    @SuppressLint("StaticFieldLeak")
     public static PostViewAdapter mPostViewAdapter;
     private LinearLayoutManager linearLayoutManager1;
     public static ArrayList<PostViewObject> mPostViewObject;
 
     private FirebaseFirestore db;
-    private Query query;
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 7;
+    private static final int TOTAL_ITEM_EACH_LOAD = 4;
     public static DocumentSnapshot lastVisible;
 
     private ShimmerFrameLayout mShimmerViewContainer;
@@ -80,22 +81,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         context = this;
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mySwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swiperefresh);
+        mySwipeRefreshLayout = findViewById(R.id.swiperefresh);
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
         mShimmerViewContainer.startShimmer();
 
-        mPostViewObject = new ArrayList<PostViewObject>();
-        mRecyclerViewPost = (RecyclerView) findViewById(R.id.main_posts);
+        mPostViewObject = new ArrayList<>();
+        mRecyclerViewPost = findViewById(R.id.main_posts);
 
         linearLayoutManager1 = new LinearLayoutManager(this);
         linearLayoutManager1.setOrientation(RecyclerView.VERTICAL);
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        mySwipeRefreshLayout.setRefreshing(false);
                         mShimmerViewContainer.setVisibility(View.VISIBLE);
                         mShimmerViewContainer.startShimmer();
                         mPostViewAdapter.clear();
@@ -121,8 +123,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void updatePost(){
+
+        if(!isNetworkAvailable())
+            Snackbar.make(findViewById(R.id.linearLayout), "No internet Connection", Snackbar.LENGTH_SHORT).show();
+
         db = FirebaseFirestore.getInstance();
-        query = db.collection("Posts")
+        Query query = db.collection("Posts")
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .limit(TOTAL_ITEM_EACH_LOAD);
 
@@ -130,16 +136,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+                    mPostViewObject.clear();
                     for (DocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
                         PostViewObject mPostView = documentSnapshot.toObject(PostViewObject.class);
                         mPostViewObject.add(mPostView);
                     }
-                    mySwipeRefreshLayout.setRefreshing(false);
+                    mPostViewAdapter.notifyDataSetChanged();
                     mShimmerViewContainer.stopShimmer();
                     mShimmerViewContainer.setVisibility(View.GONE);
-                    mPostViewAdapter.notifyDataSetChanged();
 
-                    if (!(task.getResult().size() <= 1))
+                    if (!(task.getResult().size() == 0))
                         lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
 
                     mRecyclerViewPost.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager1) {
@@ -203,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            finish();
         }
     }
 
@@ -218,9 +224,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(DialogInterface dialog, int which) {
                 EditText feedback_text = dialogView.findViewById(R.id.feedback_text);
                 if(feedback_text.getText().toString().compareTo("")==0)
-                    Toast.makeText(context,"Please enter feedback text",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.linearLayout), "Please enter feedback text", Snackbar.LENGTH_SHORT).show();
                 else {
-                    Toast.makeText(context,"Thanks for your Feedback!",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.linearLayout), "Thanks for your Feedback!", Snackbar.LENGTH_SHORT).show();
                     String uniqueID = UUID.randomUUID().toString();
                     String feedbackText = feedback_text.getText().toString();
 
@@ -317,5 +323,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } catch (PackageManager.NameNotFoundException e) {
             return false;
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

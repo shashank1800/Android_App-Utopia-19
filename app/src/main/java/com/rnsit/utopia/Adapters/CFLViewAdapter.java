@@ -4,6 +4,8 @@ import com.rnsit.utopia.AdapterObjects.CFLObject;
 import com.rnsit.utopia.R;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,20 +43,20 @@ public class CFLViewAdapter extends RecyclerView.Adapter<CFLViewAdapter.ViewHold
     }
 
     @Override
-    public CFLViewAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public CFLViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.my_layout_cfl, viewGroup, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(CFLViewAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull CFLViewAdapter.ViewHolder viewHolder, int i) {
 
         Map<String,Integer> teams = new TreeMap<String,Integer>();
-        teams.put("Elegant Egyptians",R.drawable.venus);
-        teams.put("Radiant Romans",R.drawable.earth);
-        teams.put("Shielding Spartans",R.drawable.mercury);
-        teams.put("Vigorous Vikings",R.drawable.mars);
+        teams.put("Elegant Egyptians",R.drawable.ee_icon);
+        teams.put("Radiant Romans",R.drawable.rr_icon);
+        teams.put("Shielding Spartans",R.drawable.ss_icon);
+        teams.put("Vigorous Vikings",R.drawable.vv_icon);
 
         viewHolder.eventName.setText(mCFLObject.get(i).getEventName());
         viewHolder.firstName.setText(mCFLObject.get(i).getFirstName());

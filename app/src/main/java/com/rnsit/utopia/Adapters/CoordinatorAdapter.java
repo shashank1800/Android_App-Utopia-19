@@ -24,11 +24,11 @@ public class CoordinatorAdapter extends RecyclerView.Adapter<CoordinatorAdapter.
         mCoordinatorObject= coordinatorObject;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView eventName,boyName,boyPhone,girlName,girlPhone;
         ImageView boyPhoto,girlPhoto;
 
-        public ViewHolder(@Nullable View itemView) {
+         ViewHolder(@Nullable View itemView) {
             super(itemView);
             eventName = (TextView) itemView.findViewById(R.id.eventName);
             boyPhoto = (ImageView)itemView.findViewById(R.id.boyPhoto);

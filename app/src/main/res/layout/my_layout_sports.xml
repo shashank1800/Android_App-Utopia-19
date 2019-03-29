@@ -50,6 +50,7 @@
                 <ImageView
                     android:id="@+id/teamImage1"
                     android:layout_width="@dimen/dimen_60dp"
+                    android:contentDescription="@string/contentDesc"
                     android:layout_height="@dimen/dimen_60dp"
                     android:layout_marginEnd="@dimen/dimen_30dp"
                     android:layout_gravity="end"/>
@@ -57,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="V/S"
+                android:text="@string/v_s"
                 android:textStyle="italic"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/colorAccent"
@@ -71,6 +72,7 @@
                 <ImageView
                     android:id="@+id/teamImage2"
                     android:layout_width="@dimen/dimen_60dp"
+                    android:contentDescription="@string/contentDesc"
                     android:layout_height="@dimen/dimen_60dp"
                     android:layout_marginStart="@dimen/dimen_30dp"
                     android:layout_gravity="start"/>

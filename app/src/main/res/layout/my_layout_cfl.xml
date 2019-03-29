@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/dimen_10dp"
-                    android:text="#1"
+                    android:text="@string/_1"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/dimen_22sp"
@@ -57,6 +57,7 @@
                 <ImageView
                     android:id="@+id/teamImage1"
                     android:layout_width="@dimen/dimen_50dp"
+                    android:contentDescription="@string/contentDesc"
                     android:layout_height="@dimen/dimen_50dp"
                     android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_marginTop="@dimen/dimen_5dp"
@@ -72,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/dimen_10dp"
-                    android:text="#2"
+                    android:text="@string/_2"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/dimen_22sp"
@@ -91,6 +92,7 @@
                 <ImageView
                     android:id="@+id/teamImage2"
                     android:layout_width="@dimen/dimen_50dp"
+                    android:contentDescription="@string/contentDesc"
                     android:layout_height="@dimen/dimen_50dp"
                     android:layout_marginEnd="@dimen/dimen_20dp"
                     android:layout_marginTop="@dimen/dimen_5dp"

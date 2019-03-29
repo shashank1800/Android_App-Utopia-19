@@ -20,10 +20,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.CFLObject;
 import com.rnsit.utopia.AdapterObjects.SportsObject;
-import com.rnsit.utopia.AdapterObjects.TechObject;
 import com.rnsit.utopia.Adapters.CFLViewAdapter;
 import com.rnsit.utopia.Adapters.SportsViewAdapter;
-import com.rnsit.utopia.Adapters.TechViewAdapter;
 import com.rnsit.utopia.EndlessRecycler.CultEndlessRecyclerOnScrollListener;
 import com.rnsit.utopia.EndlessRecycler.FunEndlessRecyclerOnScrollListner;
 import com.rnsit.utopia.EndlessRecycler.LitEndlessRecyclerOnScrollListner;
@@ -44,13 +42,11 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
     public static RecyclerView mRecyclerFun,mRecyclerSports,mRecyclerCult,mRecyclerTech,mRecyclerLit;
     public static SportsViewAdapter mSportsViewAdapter;
-    public static TechViewAdapter mTechViewAdapter;
     public static CFLViewAdapter mCFLViewAdapter;
 
     private LinearLayoutManager linearLayoutManager1,linearLayoutManager2,linearLayoutManager3,linearLayoutManager4,linearLayoutManager5;
 
     public static ArrayList<SportsObject> sports;
-    public static ArrayList<TechObject> techs;
     public static ArrayList<CFLObject> cflObjects;
 
     private ShimmerFrameLayout mShimmerViewContainer;
@@ -66,7 +62,6 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         context = this;
 
         sports = new ArrayList<SportsObject>();
-        techs = new ArrayList<TechObject>();
         cflObjects = new ArrayList<CFLObject>();
 
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
@@ -112,14 +107,13 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
         mRecyclerTech.setLayoutManager(linearLayoutManager5);
 
         mSportsViewAdapter = new SportsViewAdapter(context,sports);
-        mTechViewAdapter = new TechViewAdapter(context,techs);
         mCFLViewAdapter = new CFLViewAdapter(context,cflObjects);
 
         mRecyclerFun.setAdapter(mCFLViewAdapter);
         mRecyclerCult.setAdapter(mCFLViewAdapter);
         mRecyclerSports.setAdapter(mSportsViewAdapter);
         mRecyclerLit.setAdapter(mCFLViewAdapter);
-        mRecyclerTech.setAdapter(mTechViewAdapter);
+        mRecyclerTech.setAdapter(mCFLViewAdapter);
 
         bottomNavigationView.setSelectedItemId(R.id.bot_sports);
     }
@@ -283,17 +277,17 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        techs.clear();
+                        cflObjects.clear();
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                TechObject mTechObject = document.toObject(TechObject.class);
-                                techs.add(mTechObject);
+                                CFLObject mCFLObject = document.toObject(CFLObject.class);
+                                cflObjects.add(mCFLObject);
                             }
-                            if(techs.isEmpty())
+                            if(cflObjects.isEmpty())
                                 not_updated.setVisibility(View.VISIBLE);
                             mShimmerViewContainer.stopShimmer();
                             mShimmerViewContainer.setVisibility(View.GONE);
-                            mTechViewAdapter.notifyDataSetChanged();
+                            mCFLViewAdapter.notifyDataSetChanged();
 
                             if (!(task.getResult().size() == 0))
                                 lastVisible = task.getResult().getDocuments().get(task.getResult().size() - 1);
@@ -323,7 +317,6 @@ public class Results extends AppCompatActivity implements BottomNavigationView.O
 
     private void ClearAdapter() {
         mSportsViewAdapter.clear();
-        mTechViewAdapter.clear();
         mCFLViewAdapter.clear();
     }
 }

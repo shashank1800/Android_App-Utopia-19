@@ -8,6 +8,7 @@
         android:layout_height="@dimen/dimen_100dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
+        android:contentDescription="@string/contentDesc"
         android:src="@drawable/utopia_logo" />
     <View
         android:layout_width="match_parent"

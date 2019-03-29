@@ -6,259 +6,323 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground"
+    android:orientation="vertical"
     tools:context=".Teams">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView.Checkable"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dimen_5dp"
-            android:layout_marginLeft="@dimen/dimen_5dp"
-            app:cardElevation="@dimen/dimen_5dp">
-            <LinearLayout
-                android:id="@+id/team1Card"
+            android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/earth" />
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                app:cardBackgroundColor="#120c0a"
+                app:cardElevation="@dimen/dimen_5dp">
                 <LinearLayout
+                    android:id="@+id/team1Card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/cardColor"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/dimen_150dp"
+                        android:layout_height="@dimen/dimen_150dp"
+                        android:adjustViewBounds="true"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/contentDesc"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ee_icon" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:layout_gravity="center"
-                            android:text="Elegant Egyptians"
-                            android:textSize="@dimen/dimen_20sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/cardTextColor" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Edadada Tsdfsads(C)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aasdasd Gdaassdd(VC)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_gravity="center"
+                                android:text="@string/elegant_egyptians"
+                                android:textSize="@dimen/dimen_20sp"
+                                android:textStyle="bold"
+                                android:textColor="#a97328" />
+                        </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView.Checkable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_5dp"
-            android:layout_marginLeft="@dimen/dimen_5dp"
-            app:cardElevation="@dimen/dimen_5dp">
-            <LinearLayout
-                android:id="@+id/team2Card"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/led_by"
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="12sp"
+                                android:textStyle="normal"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/sharanu_c"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="ANKITHA SHINDE (VC)"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/venus" />
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                app:cardBackgroundColor="#07100f"
+                app:cardElevation="@dimen/dimen_5dp">
                 <LinearLayout
+                    android:id="@+id/team2Card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/cardColor"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/dimen_150dp"
+                        android:layout_height="@dimen/dimen_150dp"
+                        android:src="@drawable/vv_icon"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/contentDesc"
+                        android:scaleType="centerCrop"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:layout_gravity="center"
-                            android:text="Vigorous Vikings"
-                            android:textSize="@dimen/dimen_20sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/cardTextColor" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Edadada Tsdfsads(C)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aasdasd Gdaassdd(VC)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_gravity="center"
+                                android:text="@string/vigorous_vikings"
+                                android:textSize="@dimen/dimen_20sp"
+                                android:textStyle="bold"
+                                android:textColor="#4fc7e2" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/led_by"
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="12sp"
+                                android:textStyle="normal"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/aman_tripathi_c"
+                                android:textColor="@color/white"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="ARPITA SHETTY (VC)"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
+                        </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView.Checkable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_5dp"
-            android:layout_marginLeft="@dimen/dimen_5dp"
-            app:cardElevation="@dimen/dimen_5dp">
-            <LinearLayout
-                android:id="@+id/team3Card"
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/mercury" />
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                app:cardBackgroundColor="#171216"
+                app:cardElevation="@dimen/dimen_5dp">
                 <LinearLayout
+                    android:id="@+id/team3Card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/cardColor"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/dimen_150dp"
+                        android:layout_height="@dimen/dimen_150dp"
+                        android:src="@drawable/ss_icon"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/contentDesc"
+                        android:scaleType="centerCrop"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:layout_gravity="center"
-                            android:text="Shielding Spartans"
-                            android:textSize="@dimen/dimen_20sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/cardTextColor" />
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_gravity="center"
+                                android:text="@string/shielding_spartans"
+                                android:textSize="@dimen/dimen_20sp"
+                                android:textStyle="bold"
+                                android:textColor="#8f1e1d" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/led_by"
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="12sp"
+                                android:textStyle="normal"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/anantha_krishna_bhat_c"
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SHREENIDHI P SHETTY (VC)"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText" />
+                        </LinearLayout>
+
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Edadada Tsdfsads(C)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aasdasd Gdaassdd(VC)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
                 </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView.Checkable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:layout_marginRight="@dimen/dimen_5dp"
-            android:layout_marginLeft="@dimen/dimen_5dp"
-            app:cardElevation="@dimen/dimen_5dp">
-            <LinearLayout
-                android:id="@+id/team4Card"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/mars" />
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                app:cardBackgroundColor="#292311"
+                app:cardElevation="@dimen/dimen_5dp">
                 <LinearLayout
+                    android:id="@+id/team4Card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/cardColor"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/dimen_150dp"
+                        android:layout_height="@dimen/dimen_150dp"
+                        android:src="@drawable/rr_icon"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/contentDesc"
+                        android:scaleType="centerCrop"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorAccent"
                         android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dimen_10dp"
-                            android:layout_gravity="center"
-                            android:text="Radiant Romans"
-                            android:textSize="@dimen/dimen_20sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/cardTextColor" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Edadada Tsdfsads(C)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aasdasd Gdaassdd(VC)"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
-                        android:layout_marginTop="@dimen/dimen_10dp"
-                        android:textSize="@dimen/dimen_16sp"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_gravity="center"
+                                android:text="@string/radiant_romans"
+                                android:textSize="@dimen/dimen_20sp"
+                                android:textStyle="bold"
+                                android:textColor="#eea520" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/led_by"
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="12sp"
+                                android:textStyle="normal"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/k_hari_vinayak_sai_c"
+                                android:layout_gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="SURABHI SINHA (VC)"
+                                android:textColor="@color/white"
+                                android:layout_marginTop="@dimen/dimen_5dp"
+                                android:textSize="@dimen/dimen_18sp"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
 
-    </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </ScrollView>
+
+
 </LinearLayout>

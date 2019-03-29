@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_teams"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="Teams" />
+            android:icon="@drawable/ic_team"
+            android:title="@string/teams" />
         <item
             android:id="@+id/nav_events"
-            android:icon="@drawable/nav_icon_event"
-            android:title="Events" />
+            android:icon="@drawable/ic_events"
+            android:title="@string/events" />
         <item
             android:id="@+id/nav_results"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="Results" />
+            android:icon="@drawable/ic_results"
+            android:title="@string/results" />
         <item
             android:id="@+id/nav_about_utopia"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="About Utopia" />
+            android:icon="@drawable/ic_utopia"
+            android:title="@string/about_u" />
         <item
             android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="Coordinators" />
+            android:icon="@drawable/ic_coordinators"
+            android:title="@string/coordinators" />
     </group>
     <item android:checkableBehavior="single"
         android:title="">
@@ -29,15 +28,15 @@
             <item
                 android:id="@+id/nav_shareapp"
                 android:icon="@drawable/ic_share"
-                android:title="Share App" />
+                android:title="@string/share_app" />
             <item
                 android:id="@+id/nav_feedback_text"
                 android:icon="@drawable/ic_feedback"
-                android:title="Feedback" />
+                android:title="@string/feedbackT" />
             <item
                 android:id="@+id/nav_aboutdev"
                 android:icon="@drawable/ic_about_developer"
-                android:title="About Developer" />
+                android:title="@string/about_developer" />
         </menu>
     </item>
 

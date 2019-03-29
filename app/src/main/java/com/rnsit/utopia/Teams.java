@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import java.util.Objects;
+
 public class Teams extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayout team1Card,team2Card,team3Card,team4Card;
@@ -18,7 +20,7 @@ public class Teams extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teams);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         context = this;
 
         team1Card = (LinearLayout) findViewById(R.id.team1Card);

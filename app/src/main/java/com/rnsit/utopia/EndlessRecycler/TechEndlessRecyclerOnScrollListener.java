@@ -8,22 +8,24 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.rnsit.utopia.AdapterObjects.TechObject;
+import com.rnsit.utopia.AdapterObjects.CFLObject;
 import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.Results;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class TechEndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener{
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 10;
+    private static final int TOTAL_ITEM_EACH_LOAD = 6;
     private boolean isScrolling = false;
     private boolean isLastItemReached = false;
     private LinearLayoutManager mLinearLayoutManager;
     private FirebaseFirestore db;
 
-    public TechEndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager) {
+    protected TechEndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager) {
         this.mLinearLayoutManager = linearLayoutManager;
         db = FirebaseFirestore.getInstance();
     }
@@ -56,16 +58,16 @@ public abstract class TechEndlessRecyclerOnScrollListener extends RecyclerView.O
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> t) {
                     if (t.isSuccessful()) {
-                        for (DocumentSnapshot document : t.getResult()) {
-                            TechObject mTechObject = document.toObject(TechObject.class);
-                            Results.techs.add(mTechObject);
+                        for (DocumentSnapshot document : Objects.requireNonNull(t.getResult())) {
+                            CFLObject mCFLObject = document.toObject(CFLObject.class);
+                            Results.cflObjects.add(mCFLObject);
                         }
                         MainActivity.isScrollListenerEnabled = true;
-                        Results.mTechViewAdapter.notifyDataSetChanged();
+                        Results.mCFLViewAdapter.notifyDataSetChanged();
                         if(!(t.getResult().size()==0))
                             Results.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
 
-                        if (t.getResult().size()+2< TOTAL_ITEM_EACH_LOAD) {
+                        if (t.getResult().size()+1< TOTAL_ITEM_EACH_LOAD) {
                             isLastItemReached = true;
                         }
                     }

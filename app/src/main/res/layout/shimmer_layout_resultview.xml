@@ -6,14 +6,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_100dp"
-        android:layout_margin="@dimen/dimen_10dp"
-        app:cardCornerRadius="@dimen/dimen_6dp"
-        app:cardBackgroundColor="@color/shimmer_color"/>
-    <View
-        android:layout_width="@dimen/dimen_250dp"
         android:layout_height="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        app:cardCornerRadius="@dimen/dimen_4dp"
+        app:cardBackgroundColor="@color/shimmer_color"/>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
         android:layout_marginTop="@dimen/dimen_5dp"
-        android:layout_marginStart="@dimen/dimen_10dp"
-        android:background="@color/shimmer_color"/>
+        app:cardCornerRadius="@dimen/dimen_4dp"
+        app:cardBackgroundColor="@color/shimmer_color"/>
+
 </LinearLayout>

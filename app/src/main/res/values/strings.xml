@@ -1,12 +1,44 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">UTOPIA \'19</string>
     <string name="API_KEY">AIzaSyB6vquKhw7wFfk4WWN7KMzD1B3OgfZMhrA</string>
-    <string name="about_utopia">\t \t \t \t There are times you will look back \nWhen you are long ahead in your life \nThese moments won\'t repeat \nSo come live them once, let them be your memories \n \t \t \t \t When you look back at Utopia, you will see a thousand thoughts Hundreds of memories, overlapping faces \nShare them, let them be our memories of comfort ,happiness and friendship \n \t \t \t \t For today\'s moments are tomorrow\'s memories\n Let\'s make memories together \n Let this be a happy place to visit</string>
+    <string name="about_utopia">There are times you will look back, when you are long ahead in your life. These moments won\'t repeat, so come live them once, let them be your memories. \n\n When you look back at Utopia, you will see a thousand thoughts, Hundreds of memories, overlapping faces, share them, let them be our memories of comfort, happiness and friendship. \n\n For today\'s moments are tomorrow\'s memories. Let\'s make memories together. Let this be a happy place to visit.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="utopiaLogo">utopiaLogo</string>
     <string name="dev_name">Shashank Bhat</string>
     <string name="dev_branch">Computer Science</string>
-    <string name="utopia_video_link">"ak-yN-8K2cU"</string>
+    <string name="utopia_video_link">Aq-Tbg70TYc</string>
     <string name="submit">Submit</string>
+    <string name="contentDesc">imageView</string>
+    <string name="total_events">Events List</string>
+    <string name="sceduled_event_list">Schedule</string>
+    <string name="feedback">Feedback..</string>
+    <string name="no_results">The results are not yet out</string>
+    <string name="elegant_egyptians">ELEGANT EGYPTIANS</string>
+    <string name="sharanu_c" tools:ignore="TypographyOther">SHARANU (C)</string>
+    <string name="shielding_spartans">SHIELDING SPARTANS</string>
+    <string name="anantha_krishna_bhat_c" tools:ignore="TypographyOther">ANANTHA KRISHNA BHAT (C)</string>
+    <string name="radiant_romans">RADIANT ROMANS</string>
+    <string name="k_hari_vinayak_sai_c" tools:ignore="TypographyOther">K HARI VINAYAK SAI (C)</string>
+    <string name="vigorous_vikings">VIGOROUS VIKINGS</string>
+    <string name="aman_tripathi_c" tools:ignore="TypographyOther">AMAN TRIPATHI (C)</string>
+    <string name="_1">#1</string>
+    <string name="_2">#2</string>
+    <string name="v_s">V/S</string>
+    <string name="fun">Fun</string>
+    <string name="cultural">Cultural</string>
+    <string name="sports">Sports</string>
+    <string name="literature">Literature</string>
+    <string name="technical">Technical</string>
+    <string name="events">Events</string>
+    <string name="teams">Teams</string>
+    <string name="results">Results</string>
+    <string name="about_u">About Utopia</string>
+    <string name="coordinators">Coordinators</string>
+    <string name="share_app">Share App</string>
+    <string name="about_developer">About</string>
+    <string name="feedbackT">Feedback</string>
+    <string name="led_by">LED BY</string>
+    <string name="utopia_2019_promo">Utopia 2019 Promo</string>
 </resources>

@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener{
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 7;
+    private static final int TOTAL_ITEM_EACH_LOAD = 5;
     private boolean isScrolling = true;
     private boolean isLastItemReached = false;
     private LinearLayoutManager mLinearLayoutManager;
@@ -66,7 +66,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
                         if(!(t.getResult().size()==0))
                             MainActivity.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
 
-                        if (t.getResult().size()+2< TOTAL_ITEM_EACH_LOAD) {
+                        if (t.getResult().size()+1< TOTAL_ITEM_EACH_LOAD) {
                             isLastItemReached = true;
                         }
                     }

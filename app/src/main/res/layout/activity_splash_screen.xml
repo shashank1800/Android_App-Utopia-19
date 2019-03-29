@@ -8,8 +8,11 @@
     tools:context=".SplashScreen">
 
     <ImageView
+        android:id="@+id/splash_image"
         android:layout_width="wrap_content"
+        android:transitionName="@string/utopiaLogo"
         android:layout_height="@dimen/dimen_100dp"
+        android:contentDescription="@string/contentDesc"
         android:src="@drawable/utopia_logo"
         android:layout_centerInParent="true" />
 

@@ -14,12 +14,14 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_centerInParent="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
         <ImageView
             android:layout_width="@dimen/dimen_20dp"
             android:layout_height="@dimen/dimen_20dp"
             android:layout_gravity="center"
             android:tint="@color/colorAccent"
+            android:contentDescription="@string/contentDesc"
             android:src="@drawable/ic_about_developer"/>
         <TextView
             android:layout_width="wrap_content"
@@ -28,7 +30,7 @@
             android:layout_gravity="center"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
-            android:text="The results are not out yet"
+            android:text="@string/no_results"
             android:textSize="@dimen/dimen_18sp"/>
     </LinearLayout>
 
@@ -83,7 +85,6 @@
         android:id="@+id/bottomNav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimen_10dp"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_icons"
         android:background="@color/colorPrimary"

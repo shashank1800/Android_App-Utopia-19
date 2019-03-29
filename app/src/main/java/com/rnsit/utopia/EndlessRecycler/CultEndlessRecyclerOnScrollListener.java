@@ -9,16 +9,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.rnsit.utopia.AdapterObjects.CFLObject;
-import com.rnsit.utopia.AdapterObjects.TechObject;
 import com.rnsit.utopia.MainActivity;
 import com.rnsit.utopia.Results;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class CultEndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener{
 
-    private static final int TOTAL_ITEM_EACH_LOAD = 10;
+    private static final int TOTAL_ITEM_EACH_LOAD = 6;
     private boolean isScrolling = false;
     private boolean isLastItemReached = false;
     private LinearLayoutManager mLinearLayoutManager;
@@ -56,7 +57,7 @@ public abstract class CultEndlessRecyclerOnScrollListener extends RecyclerView.O
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> t) {
                     if (t.isSuccessful()) {
-                        for (DocumentSnapshot document : t.getResult()) {
+                        for (DocumentSnapshot document : Objects.requireNonNull(t.getResult())) {
                             CFLObject mCFLObject = document.toObject(CFLObject.class);
                             Results.cflObjects.add(mCFLObject);
                         }
@@ -65,7 +66,7 @@ public abstract class CultEndlessRecyclerOnScrollListener extends RecyclerView.O
                         if(!(t.getResult().size()==0))
                             Results.lastVisible = t.getResult().getDocuments().get(t.getResult().size() - 1);
 
-                        if (t.getResult().size()+2< TOTAL_ITEM_EACH_LOAD) {
+                        if (t.getResult().size()+1< TOTAL_ITEM_EACH_LOAD) {
                             isLastItemReached = true;
                         }
                     }

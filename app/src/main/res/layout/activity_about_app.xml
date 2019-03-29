@@ -16,15 +16,27 @@
             android:layout_height="@dimen/dimen_150dp"
             android:layout_marginTop="@dimen/dimen_20dp"
             android:layout_gravity="center"
+            android:contentDescription="@string/contentDesc"
             android:src="@drawable/utopia_logo"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dimen_10dp"
             android:text="@string/about_utopia"
             android:textSize="@dimen/dimen_18sp"
+            android:gravity="center"
             android:textColor="@color/white"
             android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:text="@string/utopia_2019_promo"
+            android:textSize="@dimen/dimen_20sp"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/opensans"/>
 
         <com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/youtubeVideoView"

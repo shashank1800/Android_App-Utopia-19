@@ -3,23 +3,23 @@
 
     <item
         android:id="@+id/bot_fun"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Fun" />
+        android:icon="@drawable/ic_fun"
+        android:title="@string/fun" />
     <item
         android:id="@+id/bot_cultural"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Cultural" />
+        android:icon="@drawable/ic_cult"
+        android:title="@string/cultural" />
     <item
         android:id="@+id/bot_sports"
-        android:icon="@drawable/nav_icon_event"
-        android:title="Sports" />
+        android:icon="@drawable/ic_sports"
+        android:title="@string/sports" />
     <item
         android:id="@+id/bot_literature"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Literature" />
+        android:icon="@drawable/ic_lit"
+        android:title="@string/literature" />
     <item
         android:id="@+id/bot_technical"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Technical" />
+        android:icon="@drawable/ic_tech"
+        android:title="@string/technical" />
 
 </menu>
