@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="@string/dev_name"
             android:layout_gravity="center"
-            android:textSize="@dimen/dimen_24sp"
+            android:textSize="@dimen/dimen_20sp"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
             android:fontFamily="@font/opensans"/>
@@ -35,7 +35,7 @@
             android:text="@string/dev_branch"
             android:layout_marginTop="@dimen/dimen_5dp"
             android:layout_gravity="center"
-            android:textSize="@dimen/dimen_18sp"
+            android:textSize="@dimen/dimen_16sp"
             android:textColor="@color/white"
             android:textStyle="bold"/>
     </LinearLayout>

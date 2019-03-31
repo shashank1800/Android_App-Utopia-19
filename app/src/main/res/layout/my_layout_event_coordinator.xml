@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/boyPhone"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dimen_10dp"
                     android:textIsSelectable="true"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/dimen_14sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textColor="@color/white"/>
@@ -85,7 +85,7 @@
                     android:id="@+id/girlName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/dimen_14sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textColor="@color/white"/>

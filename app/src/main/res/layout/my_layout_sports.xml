@@ -24,7 +24,7 @@
                 android:layout_marginTop="@dimen/dimen_2dp"
                 android:textColor="@color/cardTextColor"
                 android:textStyle="bold"
-                android:textSize="@dimen/dimen_22sp"
+                android:textSize="@dimen/dimen_20sp"
                 android:fontFamily="@font/opensans"/>
             <TextView
                 android:id="@+id/subHead"
@@ -87,7 +87,7 @@
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="@dimen/dimen_20sp"
+            android:textSize="@dimen/dimen_16sp"
             android:fontFamily="sans-serif"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

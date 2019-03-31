@@ -33,7 +33,7 @@
                 android:layout_margin="@dimen/dimen_5dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="@dimen/dimen_16sp"
+                android:textSize="@dimen/dimen_14sp"
                 android:fontFamily="sans-serif"/>
             <TextView
                 android:id="@+id/timeStamp"
@@ -42,7 +42,7 @@
                 android:layout_marginEnd="@dimen/dimen_10dp"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:textSize="@dimen/dimen_14sp"
+                android:textSize="12sp"
                 android:fontFamily="sans-serif"/>
         </LinearLayout>
     </LinearLayout>

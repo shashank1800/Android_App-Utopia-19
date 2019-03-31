@@ -21,7 +21,7 @@
                 android:layout_marginBottom="@dimen/dimen_5dp"
                 android:textColor="@color/cardTextColor"
                 android:textStyle="bold"
-                android:textSize="@dimen/dimen_22sp"
+                android:textSize="@dimen/dimen_20sp"
                 android:fontFamily="@font/opensans"/>
         </LinearLayout>
         <LinearLayout
@@ -52,7 +52,7 @@
                     android:layout_marginStart="@dimen/dimen_10dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="@dimen/dimen_18sp"
+                    android:textSize="@dimen/dimen_16sp"
                     android:fontFamily="sans-serif"/>
                 <ImageView
                     android:id="@+id/teamImage1"
@@ -87,7 +87,7 @@
                     android:layout_marginStart="@dimen/dimen_10dp"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="@dimen/dimen_18sp"
+                    android:textSize="@dimen/dimen_16sp"
                     android:fontFamily="sans-serif"/>
                 <ImageView
                     android:id="@+id/teamImage2"

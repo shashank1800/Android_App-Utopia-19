@@ -47,10 +47,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_margin="@dimen/dimen_10dp"
                                 android:layout_gravity="center"
                                 android:text="@string/elegant_egyptians"
-                                android:textSize="@dimen/dimen_20sp"
+                                android:textSize="@dimen/dimen_16sp"
                                 android:textStyle="bold"
                                 android:textColor="#a97328" />
                         </LinearLayout>
@@ -75,7 +75,7 @@
                                 android:text="@string/sharanu_c"
                                 android:textColor="@color/white"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                                 android:text="ANKITHA SHINDE (VC)"
                                 android:textColor="@color/white"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"
                                 tools:ignore="HardcodedText" />
                         </LinearLayout>
@@ -123,10 +123,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_margin="@dimen/dimen_10dp"
                                 android:layout_gravity="center"
                                 android:text="@string/vigorous_vikings"
-                                android:textSize="@dimen/dimen_20sp"
+                                android:textSize="@dimen/dimen_16sp"
                                 android:textStyle="bold"
                                 android:textColor="#4fc7e2" />
                         </LinearLayout>
@@ -150,7 +150,7 @@
                                 android:textColor="@color/white"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
                                 android:text="ARPITA SHETTY (VC)"
                                 android:textColor="@color/white"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"
                                 tools:ignore="HardcodedText" />
                         </LinearLayout>
@@ -199,10 +199,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_margin="@dimen/dimen_10dp"
                                 android:layout_gravity="center"
                                 android:text="@string/shielding_spartans"
-                                android:textSize="@dimen/dimen_20sp"
+                                android:textSize="@dimen/dimen_16sp"
                                 android:textStyle="bold"
                                 android:textColor="#8f1e1d" />
                         </LinearLayout>
@@ -226,7 +226,7 @@
                                 android:layout_gravity="center"
                                 android:textColor="@color/white"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"/>
 
                             <TextView
@@ -236,7 +236,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="@dimen/dimen_5dp"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"
                                 tools:ignore="HardcodedText" />
                         </LinearLayout>
@@ -277,10 +277,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/dimen_5dp"
+                                android:layout_margin="@dimen/dimen_10dp"
                                 android:layout_gravity="center"
                                 android:text="@string/radiant_romans"
-                                android:textSize="@dimen/dimen_20sp"
+                                android:textSize="@dimen/dimen_16sp"
                                 android:textStyle="bold"
                                 android:textColor="#eea520" />
                         </LinearLayout>
@@ -304,7 +304,7 @@
                                 android:layout_gravity="center"
                                 android:textColor="@color/white"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"/>
                             <TextView
                                 android:layout_width="wrap_content"
@@ -313,7 +313,7 @@
                                 android:text="SURABHI SINHA (VC)"
                                 android:textColor="@color/white"
                                 android:layout_marginTop="@dimen/dimen_5dp"
-                                android:textSize="@dimen/dimen_18sp"
+                                android:textSize="@dimen/dimen_14sp"
                                 android:textStyle="bold"/>
                         </LinearLayout>
 
