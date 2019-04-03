@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="230dp"
+    android:minHeight="@dimen/dimen_200dp"
     android:layout_marginLeft="@dimen/dimen_5dp"
     android:layout_marginTop="7dp"
     android:layout_marginRight="@dimen/dimen_5dp"
@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:contentDescription="@string/contentDesc"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true"/>
         <LinearLayout
             android:layout_width="match_parent"

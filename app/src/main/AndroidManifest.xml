@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rnsit.utopia">
 
@@ -14,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".TeamPdfView"
+        <activity
+            android:name=".TeamPdfView"
             android:parentActivityName=".TeamPdfView">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -25,14 +25,13 @@
             android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/MainActivityTheme">
-
-        </activity>
+            android:theme="@style/MainActivityTheme"></activity>
         <activity
             android:name=".Teams"
             android:label="Teams"
@@ -73,15 +72,20 @@
                 android:value="com.rnsit.utopia.MainActivity" />
         </activity>
 
-        <service android:name=".MyFirebaseMessagingService"
+        <service
+            android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />
-        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_name" />
     </application>
+
 </manifest>

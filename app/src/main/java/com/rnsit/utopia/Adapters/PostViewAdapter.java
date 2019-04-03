@@ -53,14 +53,18 @@ public class PostViewAdapter extends RecyclerView.Adapter<PostViewAdapter.ViewHo
         String min = time.substring(10,12);
 
         RequestOptions myOptions = new RequestOptions()
-                .override(800,450)
+                .override(1300,730)
                 .fitCenter();
 
-        if(Integer.parseInt(hr)>12){
+        if(Integer.parseInt(hr)==12){
+            int h = Integer.parseInt(hr);
+            time = String.valueOf(h)+":"+min+" PM";
+        }
+        else if(Integer.parseInt(hr)>12){
             int h = Integer.parseInt(hr)-12;
             time = String.valueOf(h)+":"+min+" PM";
         }else {
-            time = hr+":"+min+"AM";
+            time = hr+":"+min+" AM";
         }
 
         viewHolder.postDetail.setTag(mPosts.get(i));
